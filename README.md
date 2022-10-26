@@ -35,28 +35,28 @@ In this method, the user provides a CSV file that includes the known identifiers
 ## 4. GUI (Graphical User Interface)
 This tool has three pages (Home, [single ID](single.html) and [multiple ID](advance.html)). The Home page provides a project overview. The Single Id Resolver page is the interface for fetching the different source IDs corresponding to the provided ID.
 
-  ![null](images/home/csv_file_format.png)
+  ![null](images/home/single_id_page_1.png)
   Figure 1: Single Id Resolver (First Look)
 
 To use the Single Id Resolver, select the source of your input ID from the dropdown menu on the left; enter the ID number in the field on the right; and select ‘Go’.
 
-  ![null](images/home/tm_api_sources.png)
+  ![null](images/home/single_id_page_2.png)
   Figure 2: Single Id Resolver after fetching the IDs
 
-The Advance page returns multiple IDs in response to the input CSV file. Use the ‘Browse’ button to select and upload the CSV file.
-![null](images/home/single_id_page_1.png)
+The multiple ID page returns multiple IDs in response to the input CSV file. Use the ‘Browse’ button to select and upload the CSV file.
+![null](images/home/multiple_id_page1.png)
 
 The user selects the input column(s) from the CSV file that s/he wants to use to fetch the new IDs. If the user selects the Trismegistos (TM_ID) column, IDR should fetch any known corresponding IDs from other data sources. When the user selects the TM_ID column, the other columns in the grid will be disabled, and the Fetch button will appear on the page. 
 
-![null](images/home/single_id_page_2.png)
+![null](images/home/multiple_id_page2.png)
 
 When clicking the Fetch button, the user will be presented with another menu listing all the available data sources. The user selects the required data sources that s/he wishes to be searched for corresponding IDs and downloaded.
 
-![null](images/home/multiple_id_page1.png)
+![null](images/home/multiple_id_page_select_source.png)
 
 After clicking on the Apply button, the Resolver will fetch the data from the Trismegistos Matcher API; progress is reported on the pop-up screen and can be paused / interrupted (and results to date downloaded) at any time.
 
-![null](images/home/multiple_id_page2.png)
+![null](images/home/multiple_id_page_progress.png)
 
 After completing the process, the user can download the file in CSV format.
 
