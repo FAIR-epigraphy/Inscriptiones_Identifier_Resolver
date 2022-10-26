@@ -25,7 +25,10 @@
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="advance.html">Advance</a>
+                        <a class="nav-link" href="single.html">single ID</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="advance.html">multiple ID</a>
                     </li>
                 </ul>
             </div>
@@ -49,7 +52,7 @@
             <div class="col-md-1">
                 <i class="bi bi-info-circle-fill fs-4 text-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor:pointer;"></i>
 
-                <!-- Modal -->
+                <!-- Instructions Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-scrollable">
                         <div class="modal-content">
@@ -58,7 +61,11 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                ...
+                                <b>Input File format (CSV)</b>
+                                <p>The input file format must be in the required format. The required format is as follows</p>
+                                <img class="img-fluid w-50" src="images/home/csv_file_format.png" />
+                                <p class="mt-1">In the above figure, the column headers of the CSV file are highlighted with orange. The first column should be your data source ID (It might be optional). In this case, we have iSicily data source Id that is Id. Other column headers must be in the JSON_Key format provided in the <a href="https://www.trismegistos.org/dataservices/texrelations/documentation/#full_list" target="_blank">Trismegistos Matcher API data sources</a> (See figure below). The values in each column must be in number format.</p>
+                                <img class="img-fluid w-50" src="images/home/tm_api_sources.png" />
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -83,7 +90,7 @@
                 <div id="page-selection" class="mb-3 col-md-6"></div>
             </div>
             <div class="col-md-3">
-                <button id="btnFetchData" onclick="FetchDataFromAPI(this)" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#loadingModal">
+                <button id="btnFetchData" onclick="FetchDataFromAPI()" class="btn btn-primary float-end">
                     <i class="bi bi-cloud-arrow-down"></i>
                     Fetch
                 </button>
@@ -123,12 +130,12 @@
                             <p id="cntProcessed" style="font-size:0.8em;">0/0 processed...</p>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-md-12">
                             <button type="button" class="btn btn-secondary" onclick="showDetailDiv(this)">
                                 <i class="bi bi-list"></i>
-                                Show Details
+                                <span>Show Details</span>
                             </button>
                         </div>
                         <div class="col-md-11 mt-3">
@@ -141,6 +148,33 @@
         </div>
     </div>
     <!-- End of Loading Modal -->
+    <!-- Start of Data sources Modal -->
+    <div class="modal fade" id="modalSources" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="bi bi-node-plus-fill fs-3"></i> Select output sources</h5>
+                    <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <input type="text" id="txtSearch" onkeyup="search(this)" placeholder="Search ..." title="Search..." class="form-control mb-2">
+                    </div>
+                    <div class="selectAll mb-2">
+                        <span onclick="select_unselect_all(true)">Select All</span> |
+                        <span onclick="select_unselect_all(false)">Unselect All</span>
+                    </div>
+                    <div class="list-group w-100" id="divSources">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnApplySelectedSources" type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="ApplySelectedOutputSources()">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Data sources Modal -->
     <!-- Parent Jquery -->
     <script src="js/jquery-latest.min.js"></script>
 

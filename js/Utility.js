@@ -48,12 +48,38 @@ getURLParameter = async (json_key) => {
     return null;
 }
 
+getAllDataSources = async () => {
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'text/plain; charset=UTF-8');
+    let myObject = await fetch('datasources.txt', myHeaders);
+    let buffer = await myObject.arrayBuffer();
+    const decoder = new TextDecoder('iso-8859-1');
+    const data = decoder.decode(buffer);
+    //console.log(text);
+    //let s = '';
+
+    //////////////////////////////////
+    // Set dropdown list
+    let datasources = csvToArray(data)
+
+    return datasources;
+}
+
 async function getRelations(Id, source) {
-    API_URL = `https://www.trismegistos.org/dataservices/texrelations/${Id}?source=${source}`
+    if (source !== null)
+        API_URL = `https://www.trismegistos.org/dataservices/texrelations/${Id}?source=${source}`
+    else
+        API_URL = `https://www.trismegistos.org/dataservices/texrelations/${Id}`
 
     let myObject = await fetch(API_URL);
     let jsonData = await myObject.json();
-    return jsonData[0]; //TM ID
+
+    return jsonData;
+
+    //if (source !== null)
+    //    return jsonData[0]; //TM ID
+    //else
+    //    return jsonData;
 }
 //(async () => {
 //    console.log(await getURLParameter('EDB'))

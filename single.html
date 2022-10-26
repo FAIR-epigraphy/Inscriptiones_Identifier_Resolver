@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>inscriptiones.org</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css" integrity="sha384-eoTu3+HydHRBIjnCVwsFyCpUDZHZSFKEJD0mc3ZqSBSb6YhZzRHeiomAUWCstIWo" crossorigin="anonymous">
+
+    <link href="css/choices.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img style="height: 50px;width: 50px;" src="images/FAIRlogo.png" alt="inscriptiones.org">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="single.html">single ID</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="advance.html">multiple ID</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-3" id="content-place">
+
+        <div class="row">
+            <div class="col-md-12 autocomplete">
+                <div class="input-group mb-3">
+                    <div class="col-md-5">
+                        <select id="selDatasource" class="selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow">
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" id="txtId" class="selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow" placeholder="Enter datasource id...">
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-primary selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow" onclick="callAPI()">GO ></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="divData">
+            <div class="col-md-12">
+                <div class="input-group mb-3 w-auto float-end">
+                    <button type="button" class="btn btn-primary">
+                        <i class="bi bi-download"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">JSON</a></li>
+                        <li><a class="dropdown-item" href="#">URI</a></li>
+                        <li><a class="dropdown-item" href="#">XML</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <table class="table table-hover table-striped">
+                    <thead id="dataHeader">
+                        <tr>
+                            <th>Key</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rowData">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer fixed-bottom bg-light">
+        <div class="container-fluid">
+            <img style="width:5%" src="images/oxlogo.png" />
+            <img style="width:11%" src="images/DGF.png" />
+            <img style="width:18%" src="images/UKRI_Arts_Humanities.png" />
+        </div>
+    </footer>
+
+    <!-- Parent Jquery -->
+    <script src="js/jquery-latest.min.js"></script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/choices.min.js"></script>
+    <script src="js/parseCSV.js"></script>
+    <script src="js/Utility.js"></script>
+    <script>
+        getAllDataSources_URL_Parameters();
+        $('#divData').hide();
+
+        window.addEventListener('keyup', (event) => {
+            if (event.keyCode === 13) {
+                callAPI();
+            }
+        })
+
+        function callAPI() {
+            var rowData = ''
+            if ($('#txtId').val() !== '') {
+                //alert($('#selDatasource').val())
+                let Id = $('#txtId').val();
+                let source = $('#selDatasource').val()
+                API_URL = `https://www.trismegistos.org/dataservices/texrelations/${$('#txtId').val()}?source=${source}`
+
+                //let myObject = await fetch(API_URL);
+                //let jsonData = await myObject.json();
+
+                fetch(API_URL).then((response) => response.json()).then((jsonData) => {
+                    for (let i = 0; i < jsonData.length; i++) {
+                        let row = '';
+                        //console.log(jsonData[i]);
+                        for (const [key, value] of Object.entries(jsonData[i])) {
+                            if (value !== null) {
+                                if (key === 'TM_ID') {
+                                    row += `<th>${key}</th>`
+                                    row += `<td>${value[0]}</td>`
+                                }
+                                else {
+                                    row += `<th>${key}</th>`
+                                    row += `<td>${value[0]}</td>`
+                                }
+                            }
+                        }
+
+                        if (row !== '')
+                            rowData += `<tr>${row}</tr>`;
+                    }
+
+                    $('#rowData').html(rowData);
+
+                    $('#divData').show();
+                })
+            }
+        }
+    </script>
+</body>
+</html>

@@ -25,66 +25,92 @@
                         <a class="nav-link active" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="advance.html">Advance</a>
+                        <a class="nav-link" href="single.html">single ID</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="advance.html">multiple ID</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container-fluid mt-3" id="content-place">
-
+    <div class="container mt-3" id="content-place">
         <div class="row">
-            <div class="col-md-12 autocomplete">
-                <div class="input-group mb-3">
-                    <div class="col-md-5">
-                        <select id="selDatasource" class="selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow">
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="text" id="txtId" class="selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow" placeholder="Enter datasource id...">
-                    </div>
-                    <div class="col-md-1">
-                        <button class="btn btn-primary selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow" onclick="callAPI()">GO ></button>
-                    </div>
-                </div>
+            <div class="col-md-11">
+                <h2>1. Background</h2>
+                <p>
+                    Epigraphers can obtain <a href="https://www.trismegistos.org/" target="_blank">Trismegistos</a> Identifiers and other digital corpora identifiers from the <a href="https://www.trismegistos.org/dataservices/texrelations/documentation/" target="_blank">Trismegistos TexRelations Matcher API</a> by providing the different source identifiers. This process takes time because epigraphers need to fetch TM IDs by providing them one by one from different source IDs; but it is also a non-trivial task for most epigraphers to query the API directly. The Inscriptiones Identifier Resolver (IDR) helps the epigrapher to fetch the ids in a more efficient, user friendly and less time-consuming way.
+                </p>
+                <p>
+                    Inscriptiones Identifier Resolver (IDR) is the tool to fetch Trismegistos Identifiers (TM ID) using the TexRelations Matcher API by providing the different sources of identifiers and vice versa. For instance, the user uploads the CSV (input) file, and IDR returns the output in the CSV file that the epigrapher requires. A simple web-based user interface makes this a more user-friendly task.
+                </p>
+                <h2>2. Approach</h2>
+                <p>We can achieve this process using the following technologies:</p>
+                <ul>
+                    <li>Trismegistos TexRelations Matcher API</li>
+                    <li>JavaScript for backend</li>
+                    <li>HTML/CSS for front-end (GUI)</li>
+                </ul>
+                <h2>3. Methods</h2>
+                <p>IDR has two main methods: single identifier resolver and multiple identifiers resolver.</p>
+
+                <h3>3.1 Single Identifier Resolver</h3>
+                <p>
+                    In this method, the epigrapher selects the data source and provides the relevant id to fetch the other data source IDs, including the TM ID (discussed in section 4).
+                </p>
+                <h3>3.2 Multiple Identifiers Resolver</h3>
+                <p>In this method, the epigrapher provides a CSV file that includes the known identifiers as input in order to fetch the TM IDs; or TM IDs as input to obatin other data source IDs.</p>
+                <ul>
+                    <li>
+                        <b>Input File format (CSV)</b>
+                        <p>The input file format must be in the required format. The required format is as follows</p>
+                        <img class="img-fluid w-50" src="images/home/csv_file_format.png" />
+                        <p class="mt-1">In the above figure, the column headers of the CSV file are highlighted with orange. The first column should be your data source ID (It might be optional). In this case, we have iSicily data source Id that is Id. Other column headers must be in the JSON_Key format provided in the Trismegistos Matcher API data sources (See figure below). The values in each column must be in number format.</p>
+                        <img class="img-fluid w-50" src="images/home/tm_api_sources.png" />
+                    </li>
+                </ul>
+                <h2>4. GUI (Graphical User Interface)</h2>
+                <p>This tool has three pages (Home, <a href="single.html" target="_blank">single ID</a> and <a href="advance.html" target="_blank">multiple ID</a>). The Home page is a project overview. The Single Id Resolver page is responsible for fetching the different source Ids depending on the provided Id.</p>
+                <figure class="figure">
+                    <img class="img-fluid w-50" src="images/home/single_id_page_1.png" />
+                    <figcaption class="figure-caption">Figure 1: Single Id Resolver (First Look)</figcaption>
+                </figure>
+
+                <p>To use the Single Id Resolver, select the source of your input id from the dropdown menu on the left; enter the id number in the field on the right; and select ‘Go’.</p>
+                <figure class="figure">
+                    <img class="img-fluid w-50" src="images/home/single_id_page_2.png" />
+                    <figcaption class="figure-caption">Figure 2: Single Id Resolver after fetching the IDs</figcaption>
+                </figure>
+                <p>The Advance page returns multiple Ids in response to the input CSV file. Use the ‘Browse’ </p>
+                <img class="img-fluid w-50" src="images/home/multiple_id_page1.png" />
+                <p>The user selects the input column(s) from the CSV file that s/he wants to use fetch the Ids. If the user selects the Trismegistos (TM_ID) column, IDR should fetch the other data source ids. When the user selects the TM_ID column, the other columns in the Grid will be disabled, and the Fetch button will appear on the page. </p>
+                <img class="img-fluid w-50" src="images/home/multiple_id_page2.png" />
+                <p>
+                    When clicking the Fetch button, the user will be presented with another menu containing all the available data sources. The user selects the required data sources that s/he wishes to be downloaded.
+                </p>
+                <img class="img-fluid w-50" src="images/home/multiple_id_page_select_source.png" />
+                <p>After clicking on the Apply button, the Resolver will fetch the data from the Trismegistos Matcher API; progress is reported on the pop-up screen and can be paused/interrupted (and downloaded) at any time.</p>
+                <img class="img-fluid w-50" src="images/home/multiple_id_page_progress.png" />
+                <p>After completing the process, the user can download the file in CSV format.</p>
+                <h2>5. Contributors</h2>
+                <ul>
+                    <li><a href="https://www.classics.ox.ac.uk/people/dr-jonathan-prag" target="_blank">Jonathan Prag (Oxford, UK)</a></li>
+                    <li><a href="https://www.classics.ox.ac.uk/people/dr-imran-asif" target="_blank">Imran Asif (Oxford, UK)</a></li>
+                </ul>
+                <h2>6. Acknowledgements</h2>
+                <p>The Inscriptiones Identifier Resolver makes use of the <a href="https://www.trismegistos.org/" target="_blank">Trismegistos</a> <a href="https://www.trismegistos.org/dataservices/texrelations/documentation/" target="_blank">TexRelations Matcher API </a> and the TM data available under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC-BY-SA 4.0 licence</a>.</p>
+                <p>
+                    <b>For more on the Trismegistos project, see:</b> <br />
+
+                    M. Depauw / T. Gheldof, 'Trismegistos. An interdisciplinary Platform for Ancient World Texts and Related Information', in: Ł. Bolikowski, V. Casarosa, P. Goodale, N. Houssos, P. Manghi, J. Schirrwagen (edd.), Theory and Practice of Digital Libraries - TPDL 2013 Selected Workshops (Communications in Computer and Information Science 416), Cham: Springer 2014, pp. 40–52.
+                </p>
+                <hr />
             </div>
         </div>
-
-        <div class="row" id="divData">
-            <div class="col-md-12">
-                <div class="input-group mb-3 w-auto float-end">
-                    <button type="button" class="btn btn-primary">
-                        <i class="bi bi-download"></i>
-                    </button>
-
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">JSON</a></li>
-                        <li><a class="dropdown-item" href="#">URI</a></li>
-                        <li><a class="dropdown-item" href="#">XML</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <table class="table table-hover table-striped">
-                    <thead id="dataHeader">
-                        <tr>
-                            <th>Key</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
-                    <tbody id="rowData">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
     </div>
 
-    <footer class="footer fixed-bottom bg-light">
+    <footer class="footer bg-light">
         <div class="container-fluid">
             <img style="width:5%" src="images/oxlogo.png" />
             <img style="width:11%" src="images/DGF.png" />
@@ -98,51 +124,5 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/choices.min.js"></script>
-    <script src="js/parseCSV.js"></script>
-    <script src="js/Utility.js"></script>
-    <script>
-        getAllDataSources_URL_Parameters();
-        $('#divData').hide();
-
-        function callAPI() {
-            var rowData = ''
-            if ($('#txtId').val() !== '') {
-                //alert($('#selDatasource').val())
-                let Id = $('#txtId').val();
-                let source = $('#selDatasource').val()
-                API_URL = `https://www.trismegistos.org/dataservices/texrelations/${$('#txtId').val()}?source=${source}`
-
-                //let myObject = await fetch(API_URL);
-                //let jsonData = await myObject.json();
-
-                fetch(API_URL).then((response) => response.json()).then((jsonData) => {
-                    for (let i = 0; i < jsonData.length; i++) {
-                        let row = '';
-                        //console.log(jsonData[i]);
-                        for (const [key, value] of Object.entries(jsonData[i])) {
-                            if (value !== null) {
-                                if (key === 'TM_ID') {
-                                    row += `<th>${key}</th>`
-                                    row += `<td>${value[0]}</td>`
-                                }
-                                else {
-                                    row += `<th>${key}</th>`
-                                    row += `<td>${value[0]}</td>`
-                                }
-                            }
-                        }
-
-                        if (row !== '')
-                            rowData += `<tr>${row}</tr>`;
-                    }
-
-                    $('#rowData').html(rowData);
-
-                    $('#divData').show();
-                })
-            }
-        }
-    </script>
 </body>
 </html>
