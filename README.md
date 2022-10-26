@@ -45,12 +45,11 @@ The *Single ID Resolver* page is the interface for fetching the different source
   ![null](images/home/single_id_page_1.png)
   *Figure 1: Single ID Resolver (First Look)*
 
-To use the `Single ID Resolver`, select the source of your input ID from the dropdown menu on the left; enter the ID number in the field on the right; and select `Go`.
+To use the `Single ID Resolver`, select the source of your input ID from the dropdown menu on the left; enter the ID number in the field on the right; and select `Go`. You can test what happens if you input `ISic000001`. Don't forget the prefix *ISic*.
 
   ![null](images/home/single_id_page_2.png)
   *Figure 2: Single ID Resolver after fetching the IDs*
   
-You can test what happens if you input `ISic000001`. Don't forget the prefix *ISic*.
 
 ### Multiple ID Resolver
 
