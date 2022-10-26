@@ -73,3 +73,4 @@ For more on the Trismegistos project, see:
     DigitalLibraries - TPDL 2013 Selected Workshops (Communications in Computer andInformation Science 416), 
     Cham: Springer 2014, pp. 40–52.
 
+![null](images/funders.png)
