@@ -75,7 +75,7 @@ After completing the process, the user can download the file in a CSV format to 
 - [Imran Asif (Oxford, UK)](https://www.classics.ox.ac.uk/people/dr-imran-asif)
 
 ## 6. Acknowledgements
-The Inscriptiones Identifier Resolver makes use of the [Trismegistos](https:/www.trismegistos.org/) [TexRelations Matcher API](https://www.trismegistos.orgdataservices/texrelations/documentation/) and the TM data available under a [CC-BY-SA4.0 licence](https://creativecommons.org/licenses/by-sa/4.0/).
+The **Inscriptiones Identifier Resolver** makes use of the [Trismegistos](https:/www.trismegistos.org/) [TexRelations Matcher API](https://www.trismegistos.orgdataservices/texrelations/documentation/) and the TM data available under a [CC-BY-SA 4.0 licence](https://creativecommons.org/licenses/by-sa/4.0/).
 
 For more on the **Trismegistos** project, see: 
 
