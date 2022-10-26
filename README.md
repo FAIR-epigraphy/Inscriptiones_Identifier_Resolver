@@ -1,4 +1,4 @@
-﻿# Inscriptiones_Identifier_Resolver
+﻿# Inscriptiones Identifier Resolver
 ## 1. Background                
 Epigraphers can obtain [Trismegistos](https://www.trismegistos.org/) Identifiers and other digital corpora identifiers from the [Trismegistos TexRelations MatcherAPI](https://www.trismegistos.org/dataservices/texrelations/documentation/) by providing the different source identifiers. This process takes time because epigraphers need to fetch TM IDs by providing them one-by-one from different source IDs; but it is also a non-trivial task for most epigraphers to query the API directly. The Inscriptiones Identifier Resolver (IDR) helps the epigrapher to fetch the ids in a more efficient, user friendly and less time-consuming way.
 
