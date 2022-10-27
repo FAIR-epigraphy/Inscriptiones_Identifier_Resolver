@@ -13,14 +13,21 @@ function csvToArray(str, delimiter = ",") {
     // use headers.reduce to create an object
     // object properties derived from headers:values
     // the object passed as an element of the array
-    const arr = rows.map(function (row) {
-        const values = row.replace('\r', '').replace(/\s+/g, ' ').trim().split(delimiter);
-        const el = headers.reduce(function (object, header, index) {
-            object[header.replace('\r', '').replace(/\s+/g, ' ').trim()] = values[index].replace(/"/g, "");
-            return object;
-        }, {});
+    const arr = rows.filter(x => x !== '').map(function (row) {
+        if (row !== '') {
+            const values = row.replace('\r', '').replace(/\s+/g, ' ').trim().split(delimiter);
+            try {
+                const el = headers.reduce(function (object, header, index) {
+                    object[header.replace('\r', '').replace(/\s+/g, ' ').trim()] = values[index].replace(/"/g, "");
+                    return object;
+                }, {});
 
-        return el;
+                return el;
+            } catch (e) {
+                console.log(row)
+                console.log(e)
+            }
+        }
     });
 
     // return the array
