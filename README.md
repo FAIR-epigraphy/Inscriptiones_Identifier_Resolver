@@ -19,9 +19,9 @@ IDR has two main methods: a single identifier resolver and a multiple identifier
 In this method, the user selects the data source and provides the relevant single ID with which to fetch the other data source IDs, including the TM ID (discussed in detail in section 4).
 
 ### 3.2 Multiple Identifiers Resolver
-*Example scenario A: I have a CSV file with combination of multiple I.Sicily IDs and want to get all corresponding TM IDs.*
+*Example scenario A: I have a CSV file with combination of multiple I.Sicily IDs and EDR IDs and I want to get all corresponding TM IDs.*
 
-*Example scenario B: I have a CSV file with multiple EDH IDs and want to get all corresponding IDs in other projects.*
+*Example scenario B: I have a CSV file with multiple I.Sicily IDs and TM IDs and want to get all corresponding IDs in other projects (e.g. EDH and Ubit Erat Lupa).*
 
 In this method, the user provides a CSV file that includes the known identifiers as input in order to fetch the corresponding TM IDs; or the user provides TM IDs as input in order to obtain other corresponding data source IDs.
 
@@ -31,7 +31,7 @@ In this method, the user provides a CSV file that includes the known identifiers
    
   ![null](images/home/csv_file_format.png)
         
-  In the above figure, the column headers of the CSV file are highlighted in orange. The first column should be your data source ID (optional). In this example, we have used I.Sicily data as the source ID, with the heading 'Id'. Other column headers must be in the JSON_Key format provided in the `Trismegistos Matcher API` data sources (see figure below). The values in each column must be formatted as a *number*.
+  In the above figure, the column headers of the CSV file are highlighted in orange. The first column should be your data source ID (optional). In this example, we have used I.Sicily data as the source ID, with the heading 'Id'. Other column headers must be in the JSON_Key format provided in the `Trismegistos Matcher API` data sources (see figure below). The values in each column must be formatted as a *number*. For testing you can use our sample CSV [I.Sicily example](https://github.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/blob/main/sample/template.csv).
      
   ![null](images/home/tm_api_sources.png)
 
@@ -58,7 +58,7 @@ The *Multiple ID resolver* page returns multiple IDs in response to the input CS
 
 The user selects the input column(s) from the CSV file that s/he wants to use to fetch the new IDs. If the user selects the *Trismegistos (TM_ID)* column, IDR should fetch any known corresponding IDs from other data sources. When the user selects the *TM_ID* column, the other columns in the grid will be disabled, and the `Fetch` button will appear on the page. 
 
-The CSV file has to be properly formatted. For details see the [I.Sicily example]().
+The CSV file has to be properly formatted. For testing you can use our sample CSV [I.Sicily example](https://github.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/blob/main/sample/template.csv).
 
 ![null](images/home/multiple_id_page2.png)
 
