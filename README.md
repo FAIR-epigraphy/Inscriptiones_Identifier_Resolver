@@ -45,7 +45,7 @@ The *Single ID Resolver* page is the interface for fetching the different source
   ![null](images/home/single_id_page_1.png)
   *Figure 1: Single ID Resolver (First Look)*
 
-To use the `Single ID Resolver`, select the source of your input ID from the dropdown menu on the left; enter the ID number in the field on the right; and select `Go`. You can test what happens if you input `ISic000001`. Don't forget the prefix *ISic*.
+To use the `Single ID Resolver`, select the source of your input ID from the dropdown menu on the left; enter the ID number in the field on the right; and select `Go`. You can test what happens if you input `ISic000003`. Don't forget the prefix *ISic*.
 
   ![null](images/home/single_id_page_2.png)
   *Figure 2: Single ID Resolver after fetching the IDs*
@@ -57,6 +57,8 @@ The *Multiple ID resolver* page returns multiple IDs in response to the input CS
 ![null](images/home/multiple_id_page1.png)
 
 The user selects the input column(s) from the CSV file that s/he wants to use to fetch the new IDs. If the user selects the *Trismegistos (TM_ID)* column, IDR should fetch any known corresponding IDs from other data sources. When the user selects the *TM_ID* column, the other columns in the grid will be disabled, and the `Fetch` button will appear on the page. 
+
+The CSV file has to be properly formatted. For details see the [I.Sicily example]().
 
 ![null](images/home/multiple_id_page2.png)
 
