@@ -120,7 +120,12 @@
                 //alert($('#selDatasource').val())
                 let Id = $('#txtId').val();
                 let source = $('#selDatasource').val()
-                API_URL = `https://www.trismegistos.org/dataservices/texrelations/${$('#txtId').val()}?source=${source}`
+                if (source === 'None') {
+                    API_URL = `https://www.trismegistos.org/dataservices/texrelations/${$('#txtId').val()}`
+                }
+                else {
+                    API_URL = `https://www.trismegistos.org/dataservices/texrelations/${$('#txtId').val()}?source=${source}`
+                }
 
                 //let myObject = await fetch(API_URL);
                 //let jsonData = await myObject.json();

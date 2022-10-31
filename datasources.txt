@@ -1,4 +1,5 @@
 Homepage,URL_parameter,JSON_Key
+Trismegistos,None,TM_ID
 Epigraphic Database Bari,edb,EDB
 Epigraphic Database Heidelberg,edh,EDH
 Epigraphik-Datenbank Clauss / Slaby,edcs,EDCS
