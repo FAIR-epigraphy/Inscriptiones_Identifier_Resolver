@@ -1,146 +1,146 @@
-Homepage,URL_parameter,JSON_Key
-Trismegistos,None,TM_ID
-Epigraphic Database Bari,edb,EDB
-Epigraphic Database Heidelberg,edh,EDH
-Epigraphik-Datenbank Clauss / Slaby,edcs,EDCS
-Epigraphic Database Roma,edr,EDR
-Hesperia,he,HE
-Last Statues of Antiquity,lsa,UOXF
-Roman Inscriptions of Britain,rib,RIB
-PHI Greek Inscriptions,phi,PHI
-Ubi Erat Lupa,lupa,LUPA
-Inscriptions of Sicily,isic,ISic
-Inscriptions of Roman Tripolitania,irt,IRT
-Inscriptions of Greek Cyrenaica,igcyr,IGCyR
-Arabic Papyrological Database,apd,Orient
-Celtic Inscribed Stones,cisp,CISP
-The Deir el-Medina Database,dem,DeM
-PSIOnline,psi,PSI
-Papyri.info: Duke collection.,duke,PapNav-Duke
-Lexicon Leponticum,lexlep,Lexicological_lep
-Berliner Papyrusdatenbank,berlpap,Berliner_papyri
-Die Bremer Papyri,brempap,Bremen_papyri
-Chartes.it,chartes,chartes
-Hispania Epigraphica,hisp,HispEpOl
-NaBuCCo,nabucco,NaBuCCo
-Ashmolean Latin Inscriptions,ashmolian,Ashmolean_latin_inscriptions
-Papiri dell'Università di Genova,pug,PUG
-Inscriptions of Israel / Palestine,iip,IIP
-SLUB Dresden,dresden,Dresden_papyri
-Greek Verse Inscriptions of Cyrenaica,gvcyr,GVCYR
-Vindolanda Tablets Online II,vindolanda,Vindolanda
-Universiteitsbibliotheek Gent,ghent,Ghent_papyri
-Kölner Papyri,cologne,Köln_papyri
-Papyrological Navigator,ddbdp,DDBDP
-HEIDELBERGER GESAMTVERZEICHNIS DER GRIECHISCHEN PAPYRUSURKUNDEN ÄGYPTENS,hgv,HGV
-Cachette de Karnak,cachkarn,CACHKaRN
-Papyrological Navigator: Stanford,stanford,PapNav-Stanford
-Papyrological Navigator: Fordham,fordham,PapNav-Fordham
-Papyrological Navigator: Berenike,berenike,PapNav-Berenike
-Papyrological Navigator: Oslo,oslo,PapNav-Oslo
-Papyrological Navigator: Toronto,toronto,PapNav-Toronto
-Papyrological Navigator: Lund,lund,PapNav-Lund
-Papyrological Navigator: Hermitage,hermitage,PapNav-Hermitage
-Papyrological Navigator: Wisconsin,wisconsin,PapNav-Wisconsin
-Papyrological Navigator: UTS,uts,PapNav-UTS
-Papyrological Navigator: UPENN,upenn,PapNav-UPenn
-Papyrological Navigator: PSR,psr,PSR
-Papyrological Navigator: PTS,pts,PTS
-Papyrological Navigator: Perkins,perkins,PapNav-Perkins
-Papyrological Navigator: Petra,petra,PapNav-Petra
-Papyrological Navigator: Princeton,princeton,PapNav-Princeton
-ACHEMENET,achemenet,Achemenet
-Thesaurus Inscriptionum Raeticarum,tir,tir
-Digital Archive for the Study of pre-Islamic Arabian Inscriptions,dasi,DaSi
-PETRAE,petrae,PetRaE
-Database of Medieval Nubian Texts,dbmnt,DBMNT
-British Museum: Papyrus collection,bm,BritishMuseum
-Papyri.info: Columbia,pncol,PNCOL
-PapPal,pappal,PapPal
-Papyri.info: Sacramentos,pnsac,PapNav-SAC
-Papyri.info: Pullman,pnpull,PapNav-Pull
-Runenprojekt Kiel,runenprojekt,Runenprojekt_Kiel
-Penn Museum,penn,Penn_Museum
-State Archives of Assyria Online (URI's not working),saao,SAAO
-Cuneiform Digital Library Initiative,cdli,CDLI
-Online Corpus of the Inscriptions of Ancient North Arabia,ociana,OCIANA
-Österreichische Nationalbibliothek,onb,ONB
-Das Altägyptische Totentbuch,tbp,TBP
-Earlier Latin Manuscripts,cla,CLA
-DCLP,dclp,DCLP
-New Testament Virtual Manuscript Room,ntvmr,NTVMR
-FerCan,fercan,FerCan
-Vindolanda,vindolanda2,Vindolanda2
-The Leon Levy Dead Sea Scrolls Digital Library,dss,DSS
-The Center For The Study of New Testament Manuscripts,csntm,CSNTM
-Metropolitan Museum of Art,themet,MET
-Institut de Papyrologie de la Sorbonne,sorbonne,Sorbonne
-Spurlock Museum of World Cultures at ILLINOIS,spurlock,Spurlock
-e-codices,e-codices,E-Codices
-Ludwig-Maximilians-Universität München,koptoo,Koptoo
-MISHA - Maison Interuniversitaire des Sciences de l'Homme,bipab,BIPAB
-Bodmer Lab,bodmer,Bodmer_Papyri
-Universitätsbibliothek Graz,uni_graz,Uni_Graz
-Harvard Library,harvard_library,Harvard_Library
-AMS Historica,ams,AMS_Historica
-Suhu: The Inscriptions of Suhu online Project,suhu,Suhu
-The Royal Inscriptions of the Neo-Assyrian Period,rinap,RINAP
-The Royal Inscriptions of Babylonia online (RIBo) Project,ribo,RIBo
-Inscriptiones Graecae,ig,IG
-Wikipedia,wikipedia,Wikipedia
-MertensPack,mertenspack,MertensPack
-RuneS,runes,RuneS
-Archaeological Atlas of Coptic Literature,paths,PATHs(CLM)
-Philippoi,Philippoi,Philippoi
-Stanford Digital Forma Urbis Romae Project,formaurbis,FormaUrbis
-Death on the Nile,dotn,DotN
-Museum of London,MOL,MOL
-Erfgoedinzicht,erfgoedinzicht,erfgoedinzicht
-British Library,british_library,british_library
-The Morgan Library &amp; Museum,mlm,MLM
-Papyrological Navigator: Yale,pnyale,PapNav-YALE
-Museo Egizio,TPOP,TPOP
-Papyrological Navigator: Leiden,pnleiden,PapNav-Leiden
-Ogham in 3D,ogham,Ogham 3D
-Monumenta Asiae Minoris Antiqua (MAMA) XI,mama,MAMA IX
-College of Arts and Sciences: Department of Classics,ADRA,ADRA
-Kyprianos,KYP,Kyprianos
-Ancient Inscriptions of the Northern Black Sea,IOSPE,IOSPE
-Im Dialog mit der Antike – Inscriptiones Antiquae,IA,Inscriptiones_Antiquae
-Papyrological Navigator: New York University,nyu,PapNav-NYU
-Inscriptions of Aphrodisias Project,iaph,IAPH
-Livius.org Articles on ancient history,livius,Livius
-Attic Inscriptions Online (AIO),AIO,atticinscriptions
-Das Württembergische Urkundenbuch Online,wub,wubonline
-Anglo-Saxons.net,saxons,saxons
-Relicta.org,CPP,CPP
-Bibliothèque de Genève - Manuscrits et archives privées,geneve,bibGeneve
-Attalus.org,attalus,Attalus
-Ethnic Relations and Migration in the Ancient World,agrw,AGRW
-Collection of Greek Ritual Norms,cgrn,CGRN
-Practicalities of Hellenistic Ruler Cults,phrc,PHRC
-U.S. EPIGRAPHY PROJECT,USE,US_Epigraphy
-ToposText,topostext,ToposText
-Wikidata,wikidata,Wikidata
-The Demotic Palaeographical Database Project,dpdp,DPDP
-Louvre,louvre,Louvre
-The Corpus of Anglo Saxon Stone Sculpture,casss,CASSS
-Corpus Inscriptionum Latinarum,cil,CIL
-Database of Mycenaean at Oslo,damos,damos
-Papyrological Navigator: Berkeley,berkeley,PapNav-Berkeley
-ILC4CLARIN,cii,CII
-Bibliotheca Alexandrina Antiquities Museum,bibalex,BibAlex
-Berlin-Brandenburgische Akademie der Wissenschaften,TLA,TLA
-Inscriptions of Aphrodisias Project,ALA,ALA
-CPI,CPI,CPI
-Perseids,glaux,GLAUx
-Papyrus Projekt,papypro,Papyrus_Projekt
-The Global Egyptian Museum,gem,GEM
-Innovating Knowledge,ik,Innovating_knowledge
-Sibacatalog,pul,PUL
-DEChriM,4care,4CARE/DEChriM
-NYU Excavations at Amheida,amh,NYU_Amheida
-Trinity College Dublin,tcd,Trinity_college
-Grammateus,grammateus,grammateus
-Recueil informatisé des inscriptions gauloises,riig ,RIIG
-Mnamon - Ancient writing systems in the Mediterranean,Mnamon,Mnamon
+Homepage,URL_parameter,JSON_Key,prefix
+Trismegistos,None,TM_ID,
+Epigraphic Database Bari,edb,EDB,
+Epigraphic Database Heidelberg,edh,EDH,EDH
+Epigraphik-Datenbank Clauss / Slaby,edcs,EDCS,
+Epigraphic Database Roma,edr,EDR,EDR
+Hesperia,he,HE,
+Last Statues of Antiquity,lsa,UOXF,LSA-
+Roman Inscriptions of Britain,rib,RIB,
+PHI Greek Inscriptions,phi,PHI,
+Ubi Erat Lupa,lupa,LUPA,
+Inscriptions of Sicily,isic,ISic,ISic
+Inscriptions of Roman Tripolitania,irt,IRT,IRT
+Inscriptions of Greek Cyrenaica,igcyr,IGCyR,igcyr
+Arabic Papyrological Database,apd,Orient,
+Celtic Inscribed Stones,cisp,CISP,abcar_
+The Deir el-Medina Database,dem,DeM,O. Aberdeen 
+PSIOnline,psi,PSI,psi;1;
+Papyri.info: Duke collection.,duke,PapNav-Duke,
+Lexicon Leponticum,lexlep,Lexicological_lep,NO·21.
+Berliner Papyrusdatenbank,berlpap,Berliner_papyri,
+Die Bremer Papyri,brempap,Bremen_papyri,
+Chartes.it,chartes,chartes,
+Hispania Epigraphica,hisp,HispEpOl,
+NaBuCCo,nabucco,NaBuCCo,
+Ashmolean Latin Inscriptions,ashmolian,Ashmolean_latin_inscriptions,AN_Chandler_3_
+Papiri dell'Università di Genova,pug,PUG,
+Inscriptions of Israel / Palestine,iip,IIP,masa
+SLUB Dresden,dresden,Dresden_papyri,id
+Greek Verse Inscriptions of Cyrenaica,gvcyr,GVCYR,gvcyr
+Vindolanda Tablets Online II,vindolanda,Vindolanda,TVII-
+Universiteitsbibliotheek Gent,ghent,Ghent_papyri,
+Kölner Papyri,cologne,Köln_papyri,tm
+Papyrological Navigator,ddbdp,DDBDP,
+HEIDELBERGER GESAMTVERZEICHNIS DER GRIECHISCHEN PAPYRUSURKUNDEN ÄGYPTENS,hgv,HGV,
+Cachette de Karnak,cachkarn,CACHKaRN,ck
+Papyrological Navigator: Stanford,stanford,PapNav-Stanford,
+Papyrological Navigator: Fordham,fordham,PapNav-Fordham,
+Papyrological Navigator: Berenike,berenike,PapNav-Berenike,
+Papyrological Navigator: Oslo,oslo,PapNav-Oslo,
+Papyrological Navigator: Toronto,toronto,PapNav-Toronto,
+Papyrological Navigator: Lund,lund,PapNav-Lund,
+Papyrological Navigator: Hermitage,hermitage,PapNav-Hermitage,
+Papyrological Navigator: Wisconsin,wisconsin,PapNav-Wisconsin,
+Papyrological Navigator: UTS,uts,PapNav-UTS,
+Papyrological Navigator: UPENN,upenn,PapNav-UPenn,
+Papyrological Navigator: PSR,psr,PSR,
+Papyrological Navigator: PTS,pts,PTS,
+Papyrological Navigator: Perkins,perkins,PapNav-Perkins,
+Papyrological Navigator: Petra,petra,PapNav-Petra,
+Papyrological Navigator: Princeton,princeton,PapNav-Princeton,o
+ACHEMENET,achemenet,Achemenet,
+Thesaurus Inscriptionum Raeticarum,tir,tir,AK-1.
+Digital Archive for the Study of pre-Islamic Arabian Inscriptions,dasi,DaSi,
+PETRAE,petrae,PetRaE,
+Database of Medieval Nubian Texts,dbmnt,DBMNT,
+British Museum: Papyrus collection,bm,BritishMuseum,Y_EA
+Papyri.info: Columbia,pncol,PNCOL,
+PapPal,pappal,PapPal,
+Papyri.info: Sacramentos,pnsac,PapNav-SAC,
+Papyri.info: Pullman,pnpull,PapNav-Pull,
+Runenprojekt Kiel,runenprojekt,Runenprojekt_Kiel,
+Penn Museum,penn,Penn_Museum,
+State Archives of Assyria Online (URI's not working),saao,SAAO,
+Cuneiform Digital Library Initiative,cdli,CDLI,P
+Online Corpus of the Inscriptions of Ancient North Arabia,ociana,OCIANA,OCIANA_
+Österreichische Nationalbibliothek,onb,ONB,RZ
+Das Altägyptische Totentbuch,tbp,TBP,tm
+Earlier Latin Manuscripts,cla,CLA,
+DCLP,dclp,DCLP,
+New Testament Virtual Manuscript Room,ntvmr,NTVMR,
+FerCan,fercan,FerCan,
+Vindolanda,vindolanda,Vindolanda,TVII-
+The Leon Levy Dead Sea Scrolls Digital Library,dss,DSS,
+The Center For The Study of New Testament Manuscripts,csntm,CSNTM,GA_P
+Metropolitan Museum of Art,themet,MET,
+Institut de Papyrologie de la Sorbonne,sorbonne,Sorbonne,
+Spurlock Museum of World Cultures at ILLINOIS,spurlock,Spurlock,
+e-codices,e-codices,E-Codices,bge-lat
+Ludwig-Maximilians-Universität München,koptoo,Koptoo,
+MISHA - Maison Interuniversitaire des Sciences de l'Homme,bipab,BIPAB,BGU_XVII_
+Bodmer Lab,bodmer,Bodmer_Papyri,
+Universitätsbibliothek Graz,uni_graz,Uni_Graz,
+Harvard Library,harvard_library,Harvard_Library,
+AMS Historica,ams,AMS_Historica,
+Suhu: The Inscriptions of Suhu online Project,suhu,Suhu,Q
+The Royal Inscriptions of the Neo-Assyrian Period,rinap,RINAP,Q
+The Royal Inscriptions of Babylonia online (RIBo) Project,ribo,RIBo,Q
+Inscriptiones Graecae,ig,IG,IG XII 
+Wikipedia,wikipedia,Wikipedia,
+MertensPack,mertenspack,MertensPack,
+RuneS,runes,RuneS,
+Archaeological Atlas of Coptic Literature,paths,PATHs(CLM),
+Philippoi,Philippoi,Philippoi,
+Stanford Digital Forma Urbis Romae Project,formaurbis,FormaUrbis,
+Death on the Nile,dotn,DotN,
+Museum of London,MOL,MOL,
+Erfgoedinzicht,erfgoedinzicht,erfgoedinzicht,
+British Library,british_library,british_library,Egerton_Papyrus_
+The Morgan Library &amp; Museum,mlm,MLM,
+Papyrological Navigator: Yale,pnyale,PapNav-YALE,
+Museo Egizio,TPOP,TPOP,
+Papyrological Navigator: Leiden,pnleiden,PapNav-Leiden,v
+Ogham in 3D,ogham,Ogham 3D,
+Monumenta Asiae Minoris Antiqua (MAMA) XI,mama,MAMA IX,MAMA-XI-
+College of Arts and Sciences: Department of Classics,ADRA,ADRA,bgu_4_
+Kyprianos,KYP,Kyprianos,kyp-m
+Ancient Inscriptions of the Northern Black Sea,IOSPE,IOSPE,
+Im Dialog mit der Antike – Inscriptiones Antiquae,IA,Inscriptiones_Antiquae,P1_ID:
+Papyrological Navigator: New York University,nyu,PapNav-NYU,
+Inscriptions of Aphrodisias Project,iaph,IAPH,iAph
+Livius.org Articles on ancient history,livius,Livius,
+Attic Inscriptions Online (AIO),AIO,atticinscriptions,
+Das Württembergische Urkundenbuch Online,wub,wubonline,
+Anglo-Saxons.net,saxons,saxons,
+Relicta.org,CPP,CPP,
+Bibliothèque de Genève - Manuscrits et archives privées,geneve,bibGeneve,
+Attalus.org,attalus,Attalus,inscr_
+Ethnic Relations and Migration in the Ancient World,agrw,AGRW,
+Collection of Greek Ritual Norms,cgrn,CGRN,
+Practicalities of Hellenistic Ruler Cults,phrc,PHRC,
+U.S. EPIGRAPHY PROJECT,USE,US_Epigraphy,NY.NY.CU.Butl.L.
+ToposText,topostext,ToposText,
+Wikidata,wikidata,Wikidata,Q
+The Demotic Palaeographical Database Project,dpdp,DPDP,
+Louvre,louvre,Louvre,cl
+The Corpus of Anglo Saxon Stone Sculpture,casss,CASSS,
+Corpus Inscriptionum Latinarum,cil,CIL,
+Database of Mycenaean at Oslo,damos,damos,
+Papyrological Navigator: Berkeley,berkeley,PapNav-Berkeley,
+ILC4CLARIN,cii,CII,ic2_23_
+Bibliotheca Alexandrina Antiquities Museum,bibalex,BibAlex,
+Berlin-Brandenburgische Akademie der Wissenschaften,TLA,TLA,
+Inscriptions of Aphrodisias Project,ALA,ALA,eAla
+CPI,CPI,CPI,CPI-
+Perseids,glaux,GLAUx,
+Papyrus Projekt,papypro,Papyrus_Projekt,IAwJPapyri_schrift_
+The Global Egyptian Museum,gem,GEM,
+Innovating Knowledge,ik,Innovating_knowledge,M
+Sibacatalog,pul,PUL,
+DEChriM,4care,4CARE/DEChriM,
+NYU Excavations at Amheida,amh,NYU_Amheida,
+Trinity College Dublin,tcd,Trinity_college,
+Grammateus,grammateus,grammateus,
+Recueil informatisé des inscriptions gauloises,riig,RIIG,AHP-01-
+Mnamon - Ancient writing systems in the Mediterranean,Mnamon,Mnamon,

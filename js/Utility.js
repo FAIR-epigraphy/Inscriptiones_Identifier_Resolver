@@ -1,3 +1,5 @@
+var all_datasources = []
+
 getAllDataSources_URL_Parameters = async () => {
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'text/plain; charset=UTF-8');
@@ -11,6 +13,8 @@ getAllDataSources_URL_Parameters = async () => {
     //////////////////////////////////
     // Set dropdown list
     datasources = csvToArray(data)
+    all_datasources = datasources;
+
     let select = document.getElementsByClassName('selectpicker')[0];
     for (let i = 0; i < datasources.length; i++) {
         select.innerHTML += `<option value="${datasources[i].URL_parameter}">${datasources[i].Homepage}</option>`
@@ -48,6 +52,15 @@ getURLParameter = async (json_key) => {
     return null;
 }
 
+function getPrefix(source)
+{
+    let index = all_datasources.findIndex(x => x.URL_parameter === source)
+    if (index > -1)
+        return all_datasources[index].prefix;
+
+    return null;
+}
+
 getAllDataSources = async () => {
     var myHeaders = new Headers();
     myHeaders.append('Content-Type', 'text/plain; charset=UTF-8');
@@ -61,6 +74,7 @@ getAllDataSources = async () => {
     //////////////////////////////////
     // Set dropdown list
     let datasources = csvToArray(data)
+    all_datasources = datasources;
 
     return datasources;
 }

@@ -57,7 +57,7 @@
         <div class="row" id="divData">
             <div class="col-md-12">
                 <div class="input-group mb-3 w-auto float-end">
-                    <button type="button" class="btn btn-primary">
+                    <button onclick="download('json')" type="button" class="btn btn-primary">
                         <i class="bi bi-download"></i>
                     </button>
 
@@ -65,9 +65,9 @@
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">JSON</a></li>
-                        <li><a class="dropdown-item" href="#">URI</a></li>
-                        <li><a class="dropdown-item" href="#">XML</a></li>
+                        <li onclick="download('json')"><a class="dropdown-item" href="#">JSON</a></li>
+                        <li onclick="download('uri')"><a class="dropdown-item" href="#">URI</a></li>
+                        <li onclick="download('xml')"><a class="dropdown-item" href="#">XML</a></li>
                     </ul>
                 </div>
             </div>
@@ -95,6 +95,23 @@
         </div>
     </footer>
 
+    <!-- Error Modal HTML -->
+    <div id="modalError" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header flex-column">
+                    <div class="icon-box">
+                        <i class="bi bi-x-lg"></i>
+                    </div>
+                    <h4 class="modal-title w-100">Please enter number!</h4>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Parent Jquery -->
     <script src="js/jquery-latest.min.js"></script>
 
@@ -106,25 +123,45 @@
     <script src="js/Utility.js"></script>
     <script>
         getAllDataSources_URL_Parameters();
-        $('#divData').hide();
+        var myModal = new bootstrap.Modal(document.getElementById('modalError'))
+        var globalTMID = '';
 
+        $('#divData').hide();
         window.addEventListener('keyup', (event) => {
             if (event.keyCode === 13) {
+                myModal.hide();
                 callAPI();
             }
         })
 
+        function isNumber(Id) {
+            if (isNaN(Id)) {
+                return false;
+            }
+            return true;
+        }
+
         function callAPI() {
             var rowData = ''
+            $($('#divData').children()[0]).hide();
+
             if ($('#txtId').val() !== '') {
                 //alert($('#selDatasource').val())
+                if (!isNumber($('#txtId').val())) {
+                    myModal.show();
+                    return;
+                }
                 let Id = $('#txtId').val();
                 let source = $('#selDatasource').val()
+                let prefix = getPrefix(source);
+
+                Id = `${prefix}${Id}`;
+
                 if (source === 'None') {
                     API_URL = `https://www.trismegistos.org/dataservices/texrelations/${$('#txtId').val()}`
                 }
                 else {
-                    API_URL = `https://www.trismegistos.org/dataservices/texrelations/${$('#txtId').val()}?source=${source}`
+                    API_URL = `https://www.trismegistos.org/dataservices/texrelations/${Id}?source=${source}`
                 }
 
                 //let myObject = await fetch(API_URL);
@@ -132,11 +169,13 @@
 
                 fetch(API_URL).then((response) => response.json()).then((jsonData) => {
                     for (let i = 0; i < jsonData.length; i++) {
+                        $($('#divData').children()[0]).show();
                         let row = '';
                         //console.log(jsonData[i]);
                         for (const [key, value] of Object.entries(jsonData[i])) {
                             if (value !== null) {
                                 if (key === 'TM_ID') {
+                                    globalTMID = value[0];
                                     row += `<th>${key}</th>`
                                     row += `<td>${value[0]}</td>`
                                 }
@@ -156,6 +195,46 @@
                     $('#divData').show();
                 })
             }
+        }
+
+        function download(response) {
+            let url = ''
+            let fileExtension = '';
+            if (response === 'json') {
+                url = `https://www.trismegistos.org/dataservices/texrelations/${globalTMID}`
+                fileExtension = response;
+            } else if (response === 'uri') {
+                url = `https://www.trismegistos.org/dataservices/texrelations/uri/${globalTMID}`
+                fileExtension = 'json'
+            }
+            else if (response === 'xml') {
+                url = `https://www.trismegistos.org/dataservices/texrelations/xml/${globalTMID}`
+                fileExtension = response
+            }
+
+            fetch(url).then((api_response) => {
+                if (response === 'json' || response === 'uri') {
+                    return api_response.json();
+                }
+                else {
+                    return api_response.text()
+                }
+            }).then((data) => {
+                if (response === 'json' || response === 'uri') {
+                    data = JSON.stringify(data, undefined, 2);
+                }
+
+                const contentType = 'text/plain'
+                const a = document.createElement('a');
+                const file = new Blob([data], { type: contentType });
+                const filename = `${globalTMID}.${fileExtension}`;
+
+                a.href = URL.createObjectURL(file);
+                a.download = filename;
+                a.click();
+
+                URL.revokeObjectURL(a.href);
+            });
         }
     </script>
 </body>

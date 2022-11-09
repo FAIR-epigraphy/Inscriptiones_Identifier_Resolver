@@ -40,17 +40,6 @@ function selectFile() {
                 const text = event.target.result;
                 const data = csvToArray(text);
 
-                //records = []
-                //records = data.filter(x => {
-                //    for (let key of Object.keys(x)) {
-                //        if (key === 'Id') continue
-                //        if (x[key] !== null && x[key] != "")
-                //            return true
-                //    }
-                //    return false
-                //});
-
-                //records = records.filter(x => x.Trismegistos === '' || x.TM_ID === '')
                 csvData = data;
                 jsonRecords = JSON.stringify(csvData)
                 //filtereCSVdData = records
@@ -220,8 +209,9 @@ async function runAPI() {
                     updateDetails(d['Id'], key, d[key], '', 'before')
                     if (d[key] !== undefined && d[key] !== '') {
                         //console.log(d['Id'] + ' GAP ' + getNumber(d[key]))
-                        let source = await getURLParameter(key)
-                        let jsonData = await getRelations(getPrefix(getNumber(d[key]), key), source)
+                        let source = await getURLParameter(key)  //d[key])
+                        let Id = getPrefix(source) + d[key]
+                        let jsonData = await getRelations(Id, source);
 
                         d.processed = true;
                         createDownloadCSV(jsonData, source, d, key)
@@ -247,7 +237,7 @@ async function runAPI() {
 function createDownloadCSV(jsonData, source, d, key) {
     if (source !== null) {
         let Obj_TM_ID = jsonData[0]
-        let TM_ID = Obj_TM_ID === undefined || Obj_TM_ID === null ? 'N/A' : Object.values(Obj_TM_ID)[0][0]
+        let TM_ID = Obj_TM_ID === undefined || Obj_TM_ID === null ? '' : Object.values(Obj_TM_ID)[0][0]
         let object = {}
         object['Id'] = d['Id']
         object['TM_ID'] = TM_ID
@@ -281,12 +271,12 @@ function createDownloadCSV(jsonData, source, d, key) {
     }
 }
 
-function getPrefix(Id, source) {
-    if (source.toLowerCase() === 'edr') {
-        return `EDR${Id}`
-    }
-    return Id;
-}
+//function getPrefix(Id, source) {
+//    if (source.toLowerCase() === 'edr') {
+//        return `EDR${Id}`
+//    }
+//    return Id;
+//}
 
 function updateDetails(Id, source, sourceId, obj, status) {
     if (status === 'before')
