@@ -125,12 +125,15 @@
                 </p>
                 <img class="img-fluid w-50" src="images/home/multiple_id_page_progress.png" />
                 <p>After completing the process, the user can download the file in a CSV format to their local computer.</p>
-                <h2 id="5-contributors">5. Contributors</h2>
+                <h2 id="5-limitation">5. Limitation</h2>
+                <p>The following datasources are not implemented by TM.</p>
+                <ul id="missingDatasources"></ul>
+                <h2 id="6-contributors">6. Contributors</h2>
                 <ul>
                     <li><a href="https://www.classics.ox.ac.uk/people/dr-jonathan-prag" target="_blank">Jonathan Prag (Oxford, UK)</a></li>
                     <li><a href="https://www.classics.ox.ac.uk/people/dr-imran-asif" target="_blank">Imran Asif (Oxford, UK)</a></li>
                 </ul>
-                <h2 id="6-acknowledgements">6. Acknowledgements</h2>
+                <h2 id="7-acknowledgements">7. Acknowledgements</h2>
                 <p>The <strong>Inscriptiones Identifier Resolver</strong> makes use of the <a href="https:/www.trismegistos.org/" target="_blank">Trismegistos</a> <a href="https://www.trismegistos.orgdataservices/texrelations/documentation/" target="_blank">TexRelations Matcher API</a> and the TM data available under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC-BY-SA 4.0 licence</a>.</p>
                 <p>
                     For more on the <strong>Trismegistos</strong> project, see:
@@ -157,5 +160,21 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/parseCSV.js"></script>
+    <script src="js/Utility.js"></script>
+
+    <script>
+        showMissingDatasources();
+        async function showMissingDatasources(){
+            await getAllDataSources_URL_Parameters();
+            let li = '';
+            for(let i=0;i<missing_datasources.length;i++)
+            {
+                li += `<li>${missing_datasources[i].Homepage}</li>`
+            }
+            $('#missingDatasources').html(li);
+        }
+        
+    </script>
 </body>
 </html>
