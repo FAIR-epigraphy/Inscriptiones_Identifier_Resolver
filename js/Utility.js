@@ -1,4 +1,5 @@
 var all_datasources = []
+var missing_datasources = []
 
 getAllDataSources_URL_Parameters = async () => {
     var myHeaders = new Headers();
@@ -13,23 +14,27 @@ getAllDataSources_URL_Parameters = async () => {
     //////////////////////////////////
     // Set dropdown list
     datasources = csvToArray(data)
+    missing_datasources = datasources.filter(x => x.project_id === '');
+    datasources = datasources.filter(x => x.project_id !== '');
     all_datasources = datasources;
 
     let select = document.getElementsByClassName('selectpicker')[0];
-    for (let i = 0; i < datasources.length; i++) {
-        select.innerHTML += `<option value="${datasources[i].URL_parameter}">${datasources[i].Homepage}</option>`
-    }
+    if (select !== undefined) {
+        for (let i = 0; i < datasources.length; i++) {
+            select.innerHTML += `<option value="${datasources[i].URL_parameter}">${datasources[i].Homepage}</option>`
+        }
 
-    const sorting = document.querySelector('.selectpicker');
-    const commentSorting = document.querySelector('.selectpicker');
-    const sortingchoices = new Choices(sorting, {
-        placeholder: false,
-        itemSelectText: ''
-    });
+        const sorting = document.querySelector('.selectpicker');
+        const commentSorting = document.querySelector('.selectpicker');
+        const sortingchoices = new Choices(sorting, {
+            placeholder: false,
+            itemSelectText: ''
+        });
 
-    let sortingClass = sorting.getAttribute('class');
-    window.onload = function () {
-        sorting.parentElement.setAttribute('class', sortingClass);
+        let sortingClass = sorting.getAttribute('class');
+        window.onload = function () {
+            sorting.parentElement.setAttribute('class', sortingClass);
+        }
     }
 }
 
@@ -47,16 +52,23 @@ getURLParameter = async (json_key) => {
 
     let index = datasources.findIndex(x => x.JSON_Key === json_key)
     if (index > -1)
-        return datasources[index].URL_parameter;
+        return datasources[index].URL_parameter === 'None' ? null : datasources[index].URL_parameter;
 
     return null;
 }
 
-function getPrefix(source)
-{
+function getPrefix(source) {
     let index = all_datasources.findIndex(x => x.URL_parameter === source)
     if (index > -1)
         return all_datasources[index].prefix;
+
+    return null;
+}
+
+function getProjectId(source) {
+    let index = all_datasources.findIndex(x => x.URL_parameter === source)
+    if (index > -1)
+        return all_datasources[index].project_id;
 
     return null;
 }
@@ -110,4 +122,11 @@ function convertJSON2CSV(json) {
     ].join('\r\n')
 
     return csv
+}
+
+function isNumber(Id) {
+    if (isNaN(Id)) {
+        return false;
+    }
+    return true;
 }
