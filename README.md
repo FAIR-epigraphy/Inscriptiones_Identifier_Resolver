@@ -78,7 +78,7 @@ After clicking on the `Apply` button, the *Resolver* will fetch the data from th
 
 After completing the process, the user can download the file in a CSV format to their local computer.
 
-## 5. Contributors
+## 5. Limitation
 The following datasources are not implemented by TM.
 - The Deir el-Medina Database
 - PSIOnline
