@@ -79,10 +79,40 @@ After clicking on the `Apply` button, the *Resolver* will fetch the data from th
 After completing the process, the user can download the file in a CSV format to their local computer.
 
 ## 5. Contributors
+The following datasources are not implemented by TM.
+- The Deir el-Medina Database
+- PSIOnline
+- Lexicon Leponticum
+- Papyrological Navigator
+- State Archives of Assyria Online (URI's not working)
+- Vindolanda
+- Institut de Papyrologie de la Sorbonne
+- Universitätsbibliothek Graz
+- AMS Historica
+- Inscriptiones Graecae
+- Philippoi
+- Museum of London
+- Museo Egizio
+- College of Arts and Sciences: Department of Classics
+- Kyprianos
+- Ancient Inscriptions of the Northern Black Sea
+- Im Dialog mit der Antike – Inscriptiones Antiquae
+- Attic Inscriptions Online (AIO)
+- Relicta.org
+- U.S. EPIGRAPHY PROJECT
+- The Demotic Palaeographical Database Project
+- Berlin-Brandenburgische Akademie der Wissenschaften
+- Inscriptions of Aphrodisias Project
+- CPI
+- Perseids
+- Recueil informatisé des inscriptions gauloises
+- Mnamon - Ancient writing systems in the Mediterranean
+
+## 6. Contributors
 - [Jonathan Prag (Oxford, UK)](https://www.classics.ox.ac.uk/people/dr-jonathan-prag)
 - [Imran Asif (Oxford, UK)](https://www.classics.ox.ac.uk/people/dr-imran-asif)
 
-## 6. Acknowledgements
+## 7. Acknowledgements
 The **Inscriptiones Identifier Resolver** makes use of the [Trismegistos](https:/www.trismegistos.org/) [TexRelations Matcher API](https://www.trismegistos.orgdataservices/texrelations/documentation/) and the TM data available under a [CC-BY-SA 4.0 licence](https://creativecommons.org/licenses/by-sa/4.0/).
 
 For more on the **Trismegistos** project, see: 
