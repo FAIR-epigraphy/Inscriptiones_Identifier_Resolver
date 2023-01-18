@@ -106,7 +106,7 @@ Monumenta Asiae Minoris Antiqua (MAMA) XI,mama,MAMA IX,MAMA-XI-,MAMA-XI-002
 College of Arts and Sciences: Department of Classics,ADRA,ADRA,bgu_4_,
 Kyprianos,KYP,Kyprianos,kyp-m,
 Ancient Inscriptions of the Northern Black Sea,IOSPE,IOSPE,,
-Im Dialog mit der Antike ï¿½ Inscriptiones Antiquae,IA,Inscriptiones_Antiquae,P1_ID:,
+Im Dialog mit der Antike – Inscriptiones Antiquae,IA,Inscriptiones_Antiquae,P1_ID:,
 Papyrological Navigator: New York University,nyu,PapNav-NYU,,5406
 Inscriptions of Aphrodisias Project,iaph,IAPH,iAph,iAph110223
 Livius.org Articles on ancient history,livius,Livius,,tolsum-writing-tablet
