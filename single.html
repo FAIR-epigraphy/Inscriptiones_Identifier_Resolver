@@ -1,15 +1,18 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Inscriptiones Identifier Resolver (IDR)</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css" integrity="sha384-eoTu3+HydHRBIjnCVwsFyCpUDZHZSFKEJD0mc3ZqSBSb6YhZzRHeiomAUWCstIWo" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css"
+        integrity="sha384-eoTu3+HydHRBIjnCVwsFyCpUDZHZSFKEJD0mc3ZqSBSb6YhZzRHeiomAUWCstIWo" crossorigin="anonymous">
 
     <link href="css/choices.min.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
 </head>
+
 <body>
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
         <div class="container-fluid">
@@ -41,15 +44,27 @@
             <div class="col-md-12 autocomplete">
                 <div class="input-group mb-3">
                     <div class="col-md-5 col-sm-12 col-12">
-                        <select id="selDatasource" class="selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow">
+                        <select id="selDatasource"
+                            class="selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow">
                         </select>
                     </div>
                     <div class="col-md-6 col-sm-12 col-12">
-                        <input type="text" id="txtId" class="selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow" placeholder="Enter datasource id...">
+                        <input type="text" id="txtId"
+                            class="selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow"
+                            placeholder="Enter datasource id...">
                     </div>
                     <div class="col-md-1 col-sm-12 col-12">
-                        <button class="btn btn-primary selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow" onclick="callAPI()">GO ></button>
+                        <button class="btn btn-primary selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow"
+                            onclick="callAPI()">GO ></button>
                     </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <i class="bi bi-info-circle-fill"></i>
+                    <span id="divFormatMsg"></span>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </div>
         </div>
@@ -61,7 +76,8 @@
                         <i class="bi bi-download"></i>
                     </button>
 
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -122,9 +138,37 @@
     <script src="js/parseCSV.js"></script>
     <script src="js/Utility.js"></script>
     <script>
-        getAllDataSources_URL_Parameters();
         var myModal = new bootstrap.Modal(document.getElementById('modalError'))
         var globalTMID = '';
+        let projectId = null
+        displayIdFormatMessage();
+
+        async function displayIdFormatMessage() {
+            if (projectId === null)
+                await getAllDataSources_URL_Parameters();
+            let span = '';
+            projectId = getProjectId($('#selDatasource').val());
+            let prefix = getPrefix($('#selDatasource').val());
+            if (projectId !== '') {
+                if (!isNumber(projectId)) {
+                    span = `ID format should be in alphanumeric format. e.g., ${projectId}. Please don't enter prefix <em><b>${prefix}</b></em>`;
+                }
+                else {
+                    span = `ID format should be in number format. e.g., ${projectId}`;
+                }
+            }
+            $('#divFormatMsg').html(span);
+        }
+
+        $('#selDatasource').change((e) => {
+            clearAll();
+            displayIdFormatMessage();
+        })
+
+        const clearAll = () => {
+            $('#txtId').val('')
+            $('#divData').hide();
+        }
 
         $('#divData').hide();
         window.addEventListener('keyup', (event) => {
@@ -134,26 +178,20 @@
             }
         })
 
-        function isNumber(Id) {
-            if (isNaN(Id)) {
-                return false;
-            }
-            return true;
-        }
-
         function callAPI() {
             var rowData = ''
             $($('#divData').children()[0]).hide();
 
             if ($('#txtId').val() !== '') {
                 //alert($('#selDatasource').val())
-                if (!isNumber($('#txtId').val())) {
-                    myModal.show();
-                    return;
-                }
+                // if (!isNumber($('#txtId').val())) {
+                //     myModal.show();
+                //     return;
+                // }
                 let Id = $('#txtId').val();
                 let source = $('#selDatasource').val()
                 let prefix = getPrefix(source);
+                let projectId = getProjectId(source);
 
                 Id = `${prefix}${Id}`;
 
@@ -189,9 +227,12 @@
                         if (row !== '')
                             rowData += `<tr>${row}</tr>`;
                     }
+                    if(!Array.isArray(jsonData))
+                    {
+                        rowData = `<tr><td colspan="2">${jsonData.Message}</td></tr>`;
+                    }
 
                     $('#rowData').html(rowData);
-
                     $('#divData').show();
                 })
             }
@@ -238,4 +279,5 @@
         }
     </script>
 </body>
+
 </html>
