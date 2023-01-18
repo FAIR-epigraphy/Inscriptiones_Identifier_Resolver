@@ -17,22 +17,22 @@ Celtic Inscribed Stones,cisp,CISP,abcar_,abcar_1
 The Deir el-Medina Database,dem,DeM,O. Aberdeen,
 PSIOnline,psi,PSI,psi;1;,
 Papyri.info: Duke collection.,duke,PapNav-Duke,,29885998
-Lexicon Leponticum,lexlep,Lexicological_lep,NOï¿½21.,
-Berliner Papyrusdatenbank,berlpap,Berliner_papyri,,00002
+Lexicon Leponticum,lexlep,Lexicological_lep,NO·21.,
+Berliner Papyrusdatenbank,berlpap,Berliner_papyri,,2
 Die Bremer Papyri,brempap,Bremen_papyri,,1261
 Chartes.it,chartes,chartes,,14
 Hispania Epigraphica,hisp,HispEpOl,,3
 NaBuCCo,nabucco,NaBuCCo,,27700
 Ashmolean Latin Inscriptions,ashmolian,Ashmolean_latin_inscriptions,AN_Chandler_3_,AN_Chandler_3_1
-Papiri dell'Universitï¿½ di Genova,pug,PUG,,7591e9a2-dc06-4794-b37b-04038d393aaa
+Papiri dell'Università di Genova,pug,PUG,,7591e9a2-dc06-4794-b37b-04038d393aaa
 Inscriptions of Israel / Palestine,iip,IIP,masa,masa0772
 SLUB Dresden,dresden,Dresden_papyri,id,id351370048
 Greek Verse Inscriptions of Cyrenaica,gvcyr,GVCYR,gvcyr,gvcyr012
 Vindolanda Tablets Online II,vindolanda,Vindolanda,TVII-,TVII-118
-Universiteitsbibliotheek Gent,ghent,Ghent_papyri,,001484436
-Kï¿½lner Papyri,cologne,Kï¿½ln_papyri,tm,tm78
+Universiteitsbibliotheek Gent,ghent,Ghent_papyri,,1484436
+Kölner Papyri,cologne,Köln_papyri,tm,tm78
 Papyrological Navigator,ddbdp,DDBDP,,
-HEIDELBERGER GESAMTVERZEICHNIS DER GRIECHISCHEN PAPYRUSURKUNDEN ï¿½GYPTENS,hgv,HGV,,8961
+HEIDELBERGER GESAMTVERZEICHNIS DER GRIECHISCHEN PAPYRUSURKUNDEN ÄGYPTENS,hgv,HGV,,8961
 Cachette de Karnak,cachkarn,CACHKaRN,ck,ck1
 Papyrological Navigator: Stanford,stanford,PapNav-Stanford,,7463
 Papyrological Navigator: Fordham,fordham,PapNav-Fordham,,1
@@ -52,7 +52,7 @@ Papyrological Navigator: Princeton,princeton,PapNav-Princeton,o,o1
 ACHEMENET,achemenet,Achemenet,,1570320
 Thesaurus Inscriptionum Raeticarum,tir,tir,AK-1.,AK-1.1
 Digital Archive for the Study of pre-Islamic Arabian Inscriptions,dasi,DaSi,,4145
-PETRAE,petrae,PetRaE,,050300800001
+PETRAE,petrae,PetRaE,,50300800001
 Database of Medieval Nubian Texts,dbmnt,DBMNT,,1
 British Museum: Papyrus collection,bm,BritishMuseum,Y_EA,Y_EA5620
 Papyri.info: Columbia,pncol,PNCOL,,1
@@ -64,8 +64,8 @@ Penn Museum,penn,Penn_Museum,,325434
 State Archives of Assyria Online (URI's not working),saao,SAAO,,
 Cuneiform Digital Library Initiative,cdli,CDLI,P,P452578
 Online Corpus of the Inscriptions of Ancient North Arabia,ociana,OCIANA,OCIANA_,OCIANA_0032980
-ï¿½sterreichische Nationalbibliothek,onb,ONB,RZ,RZ00006741
-Das Altï¿½gyptische Totentbuch,tbp,TBP,tm,tm43080
+Österreichische Nationalbibliothek,onb,ONB,RZ,RZ00006741
+Das Altägyptische Totentbuch,tbp,TBP,tm,tm43080
 Earlier Latin Manuscripts,cla,CLA,,1
 DCLP,dclp,DCLP,,65248
 New Testament Virtual Manuscript Room,ntvmr,NTVMR,,10072
@@ -77,10 +77,10 @@ Metropolitan Museum of Art,themet,MET,,100004479
 Institut de Papyrologie de la Sorbonne,sorbonne,Sorbonne,,
 Spurlock Museum of World Cultures at ILLINOIS,spurlock,Spurlock,,1914.21.0016
 e-codices,e-codices,E-Codices,bge-lat,bge-lat0016
-Ludwig-Maximilians-Universitï¿½t Mï¿½nchen,koptoo,Koptoo,,103
+Ludwig-Maximilians-Universität München,koptoo,Koptoo,,103
 MISHA - Maison Interuniversitaire des Sciences de l'Homme,bipab,BIPAB,BGU_XVII_,BGU_XVII_2711
 Bodmer Lab,bodmer,Bodmer_Papyri,,1072205345
-Universitï¿½tsbibliothek Graz,uni_graz,Uni_Graz,,
+Universitätsbibliothek Graz,uni_graz,Uni_Graz,,
 Harvard Library,harvard_library,Harvard_Library,,7456393
 AMS Historica,ams,AMS_Historica,,
 Suhu: The Inscriptions of Suhu online Project,suhu,Suhu,Q,Q006206
@@ -88,7 +88,7 @@ The Royal Inscriptions of the Neo-Assyrian Period,rinap,RINAP,Q,Q003414
 The Royal Inscriptions of Babylonia online (RIBo) Project,ribo,RIBo,Q,Q003333
 Inscriptiones Graecae,ig,IG,IG XII ,
 Wikipedia,wikipedia,Wikipedia,,Tabula_Bantina
-MertensPack,mertenspack,MertensPack,,02137.000
+MertensPack,mertenspack,MertensPack,,2137
 RuneS,runes,RuneS,,1
 Archaeological Atlas of Coptic Literature,paths,PATHs(CLM),,14
 Philippoi,Philippoi,Philippoi,,
@@ -98,7 +98,7 @@ Museum of London,MOL,MOL,,
 Erfgoedinzicht,erfgoedinzicht,erfgoedinzicht,,63976240-fa3a-5b0c-b5b6-4d4bf4378107
 British Library,british_library,british_library,Egerton_Papyrus_,Egerton_Papyrus_2
 The Morgan Library &amp; Museum,mlm,MLM,,318275
-Papyrological Navigator: Yale,pnyale,PapNav-YALE,,0004254100
+Papyrological Navigator: Yale,pnyale,PapNav-YALE,,4254100
 Museo Egizio,TPOP,TPOP,,
 Papyrological Navigator: Leiden,pnleiden,PapNav-Leiden,v,v004
 Ogham in 3D,ogham,Ogham 3D,,246a._Ardcanaght_I
@@ -111,10 +111,10 @@ Papyrological Navigator: New York University,nyu,PapNav-NYU,,5406
 Inscriptions of Aphrodisias Project,iaph,IAPH,iAph,iAph110223
 Livius.org Articles on ancient history,livius,Livius,,tolsum-writing-tablet
 Attic Inscriptions Online (AIO),AIO,atticinscriptions,,
-Das Wï¿½rttembergische Urkundenbuch Online,wub,wubonline,,54
+Das Württembergische Urkundenbuch Online,wub,wubonline,,54
 Anglo-Saxons.net,saxons,saxons,,8
 Relicta.org,CPP,CPP,,
-Bibliothï¿½que de Genï¿½ve - Manuscrits et archives privï¿½es,geneve,bibGeneve,,vta990b75e223645a69
+Bibliothèque de Genève - Manuscrits et archives privées,geneve,bibGeneve,,vta990b75e223645a69
 Attalus.org,attalus,Attalus,inscr_,inscr_258
 Ethnic Relations and Migration in the Ancient World,agrw,AGRW,,23107
 Collection of Greek Ritual Norms,cgrn,CGRN,,102
@@ -142,5 +142,5 @@ DEChriM,4care,4CARE/DEChriM,,10
 NYU Excavations at Amheida,amh,NYU_Amheida,,1
 Trinity College Dublin,tcd,Trinity_college,,9g54xj191
 Grammateus,grammateus,grammateus,,56
-Recueil informatisï¿½ des inscriptions gauloises,riig,RIIG,AHP-01-,
+Recueil informatisé des inscriptions gauloises,riig,RIIG,AHP-01-,
 Mnamon - Ancient writing systems in the Mediterranean,Mnamon,Mnamon,,
