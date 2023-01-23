@@ -150,7 +150,7 @@
     <!-- End of Loading Modal -->
     <!-- Start of Data sources Modal -->
     <div class="modal fade" id="modalSources" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"><i class="bi bi-node-plus-fill fs-3"></i> Select output sources</h5>
@@ -175,6 +175,37 @@
         </div>
     </div>
     <!-- End of Data sources Modal -->
+    <!-- Start Error Modal HTML -->
+    <div id="modalError" class="modal fade">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>
+                        <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+                        Warning!
+                    </h5> 
+                </div>
+                <div class="modal-body">
+                    <p>You have following datasources JSON keys in your csv file.</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>JSON Key</th>
+                                <th>Format</th>
+                            </tr>
+                        </thead>
+                        <tbody id="errorMsg">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Error modal -->
     <!-- Parent Jquery -->
     <script src="js/jquery-latest.min.js"></script>
 

@@ -58,7 +58,7 @@ getURLParameter = async (json_key) => {
 }
 
 function getPrefix(source) {
-    let index = all_datasources.findIndex(x => x.URL_parameter === source)
+    let index = all_datasources.findIndex(x => x.URL_parameter === source || x.JSON_Key === source)
     if (index > -1)
         return all_datasources[index].prefix;
 
@@ -66,7 +66,7 @@ function getPrefix(source) {
 }
 
 function getProjectId(source) {
-    let index = all_datasources.findIndex(x => x.URL_parameter === source)
+    let index = all_datasources.findIndex(x => x.URL_parameter === source || x.JSON_Key === source)
     if (index > -1)
         return all_datasources[index].project_id;
 

@@ -51,7 +51,8 @@
                     <div class="col-md-6 col-sm-12 col-12">
                         <input type="text" id="txtId"
                             class="selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow"
-                            placeholder="Enter datasource id...">
+                            placeholder="Enter datasource id..."
+                            autocomplete="off" />
                     </div>
                     <div class="col-md-1 col-sm-12 col-12">
                         <button class="btn btn-primary selectpicker form-control border-0 mb-1 px-4 py-3 rounded shadow"
@@ -64,7 +65,7 @@
                     <i class="bi bi-info-circle-fill"></i>
                     <span id="divFormatMsg"></span>
 
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
                 </div>
             </div>
         </div>
@@ -151,7 +152,11 @@
             let prefix = getPrefix($('#selDatasource').val());
             if (projectId !== '') {
                 if (!isNumber(projectId)) {
-                    span = `ID format should be in alphanumeric format. e.g., ${projectId}. Please don't enter prefix <em><b>${prefix}</b></em>`;
+                    span = `ID format should be in alphanumeric format. e.g., ${projectId}. `;
+                    if(prefix!=='')
+                    {
+                        span += `Please don't enter prefix <em><b>${prefix}</b></em>`;
+                    }
                 }
                 else {
                     span = `ID format should be in number format. e.g., ${projectId}`;

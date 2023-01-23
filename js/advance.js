@@ -14,7 +14,7 @@ var sources = [];
 
 
 (async () => {
-    await displaySources();
+    await getAllDataSources();
 })();
 
 $('#btnFetchData').hide();
@@ -42,6 +42,7 @@ function selectFile() {
 
                 csvData = data;
                 jsonRecords = JSON.stringify(csvData)
+                checkDatasourceIdFormat(Object.keys(csvData[0]).filter(x => x.toLowerCase() !== 'id'));
                 //filtereCSVdData = records
                 $('#page-selection').pagination({
                     dataSource: csvData,
@@ -71,6 +72,42 @@ function selectFile() {
 
 }
 
+function checkDatasourceIdFormat(header) {
+    let table = '';
+    for (let h of header) {
+        let prefix = getPrefix(h);
+        let project_id = getProjectId(h);
+        table += `<tr>
+                    <td>${h}</td>
+                    <td>${showFormatMsg(project_id, prefix)}</td>
+                  </tr>`;
+    }
+
+    $('#errorMsg').html(table);
+    let myModal = new bootstrap.Modal(document.getElementById('modalError'));
+    myModal.show()
+}
+
+function showFormatMsg(projectId, prefix) {
+    let span = '';
+    if (projectId !== '' && projectId !== null) {
+        if (!isNumber(projectId)) {
+            span = `<i class="bi bi-info-circle-fill text-warning"></i> ID format should be in alphanumeric format. e.g., ${projectId}. `;
+            if (prefix !== '') {
+                span += `<span class="text-danger">Please don't enter prefix <em><b>${prefix}</b></em></span>`;
+            }
+        }
+        else {
+            span = `<i class="bi bi-info-circle-fill text-warning"></i> ID format should be in number format. e.g., ${projectId}`;
+        }
+    }
+    else {
+        span = `<i class="bi bi-x-circle-fill text-danger"></i> This datasource key is not supported and will not be selectable in grid.`;
+    }
+
+    return span;
+}
+
 function loadData(data) {
     let dataHeader = '<tr>';
     let rowData = '';
@@ -82,6 +119,7 @@ function loadData(data) {
                 `<th>
                 ${(header.toLowerCase() !== 'id'
                     //&& (header.toLowerCase() !== 'trismegistos' && header.toLowerCase() !== 'tm_id')
+                    && getProjectId(header) !== '' && getProjectId(header) !== null
                 ) ?
                     `<input class="form-check-input headerCheckbox" type="checkbox" value="${header}" id="chkColumn_${header}" onclick="checkedColumn(this)" />` : ''}
                  <label class="form-check-label" for="chkColumn_${header}">${header}</label>
@@ -105,89 +143,50 @@ function loadData(data) {
 }
 
 function checkedColumn(control) {
-    let checkboxes = $('.headerCheckbox')
-
     if (control.checked) {
-        if (control.value.toLowerCase() === "trismegistos" || control.value.toLowerCase() === "tm_id") {
-            Array.from(checkboxes).forEach(chk => {
-                if (chk.value.toLowerCase() !== "trismegistos" && chk.value.toLowerCase() !== "tm_id")
-                    chk.disabled = true
-            })
-        }
-        else {
-            $(`input[value = "Trismegistos"]`).prop('disabled', true)
-            $(`input[value = "TM_ID"]`).prop('disabled', true)
-            $(`input[value = "Trismegistos"]`).checked = false
-            $(`input[value = "TM_ID"]`).checked = false
-        }
         selectedColumns.push(control.value)
     }
     else {
         selectedColumns.splice(selectedColumns.findIndex(x => x === control.value), 1)
-        if (selectedColumns.length === 0) {
-            checkboxes.prop('disabled', false);
-        }
     }
 
     selectedColumns.length === 0 ? $('#btnFetchData').hide() : $('#btnFetchData').show()
 }
 
 function selectedInputData() {
-    let checkboxes = $('.headerCheckbox')
     let data = []
-    Array.from(checkboxes).forEach(chk => {
-        if (chk.checked && (chk.value.toLowerCase() === "trismegistos" || chk.value.toLowerCase() === "tm_id")) {
-            let key = Object.keys(csvData[0]).includes('Trismegistos') ? 'Trismegistos' : 'TM_ID'
-            data = csvData.filter(x => x[key] !== '')
-            return;
+    data = csvData.filter(x => {
+        for (let key of Object.keys(x)) {
+            if (key === 'Id') continue
+            if (x[key] !== null && x[key] != "")
+                return true
         }
-    })
-
-    if (data.length === 0) {
-        let rec = csvData.filter(x => {
-            for (let key of Object.keys(x)) {
-                if (key === 'Id') continue
-                if (x[key] !== null && x[key] != "")
-                    return true
-            }
-            return false
-        });
-
-        data = rec.filter(x => x.Trismegistos === '' || x.TM_ID === '')
-    }
+        return false
+    });
 
     return data;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 // Fetching data from the API
 async function FetchDataFromAPI() {
-    let isTM = false;
-    Array.from($('.headerCheckbox')).forEach(chk => {
-        if (chk.checked && (chk.value.toLowerCase() === "trismegistos" || chk.value.toLowerCase() === "tm_id")) {
-            isTM = true
-            return;
-        }
-    })
-    if (isTM) {
-        let myModal = new bootstrap.Modal(document.getElementById('modalSources'));
-        myModal.show()
-    }
-    else {
-        let myModal = new bootstrap.Modal(document.getElementById('loadingModal'));
-        myModal.show()
-        await runAPI()
-    }
+    await displaySources();
+    let myModal = new bootstrap.Modal(document.getElementById('modalSources'));
+    myModal.show();
 }
 
 async function ApplySelectedOutputSources() {
     console.log(selectedOutputSources)
-    let myModal = new bootstrap.Modal(document.getElementById('loadingModal'));
-    myModal.show()
+
     await runAPI()
 }
 
 async function runAPI() {
     filtereCSVdData = selectedInputData()
+    if (filtereCSVdData.length === 0)
+        return;
+
+    let myModal = new bootstrap.Modal(document.getElementById('loadingModal'));
+    myModal.show()
     $('#btnProgressClose').hide();
     disabledAllActionButtons()
     enableActionButton('pause')
@@ -203,22 +202,25 @@ async function runAPI() {
 
         let d = filtereCSVdData[loopIndex]
         let keys = Object.keys(d);
-        for (let key of keys) {
+        for (let key of selectedColumns) {
             try {
-                if (selectedColumns.filter(x => x === key).length > 0) {
-                    updateDetails(d['Id'], key, d[key], '', 'before')
-                    if (d[key] !== undefined && d[key] !== '') {
-                        //console.log(d['Id'] + ' GAP ' + getNumber(d[key]))
-                        let source = await getURLParameter(key)  //d[key])
-                        let Id = getPrefix(source) + d[key]
-                        let jsonData = await getRelations(Id, source);
+                //if (selectedColumns.filter(x => x === key).length > 0) {
+                updateDetails(d['Id'], key, d[key], '', 'before')
+                if (d[key] !== undefined && d[key] !== '') {
+                    //console.log(d['Id'] + ' GAP ' + getNumber(d[key]))
+                    let source = await getURLParameter(key)  //d[key])
+                    let prefix = getPrefix(source) === null ? '' : getPrefix(source);
+                    let Id = prefix + d[key]
+                    let jsonData = await getRelations(Id, source);
 
+                    if (Array.isArray(jsonData)) {
                         d.processed = true;
                         createDownloadCSV(jsonData, source, d, key)
                         found++
                         break;
                     }
                 }
+                //}
             } catch (ex) {
                 updateDetails(null, null, null, null, ex.message)
             }
@@ -235,20 +237,7 @@ async function runAPI() {
 }
 
 function createDownloadCSV(jsonData, source, d, key) {
-    if (source !== null) {
-        let Obj_TM_ID = jsonData[0]
-        let TM_ID = Obj_TM_ID === undefined || Obj_TM_ID === null ? '' : Object.values(Obj_TM_ID)[0][0]
-        let object = {}
-        object['Id'] = d['Id']
-        object['TM_ID'] = TM_ID
-        for (let col of selectedColumns) {
-            object[col] = '';
-        }
-        object[key] = d[key]
-        dwonloadFile.push(object)
-        updateDetails(d['Id'], key, d[key], { TM_ID: TM_ID }, 'after')
-    }
-    else {
+    if (Array.isArray(jsonData)) {
         let filteredData = jsonData.filter((row) => {
             var ignoreValue = Object.values(row).some(elem => elem === null);
             return !ignoreValue ? true : false;
@@ -258,7 +247,10 @@ function createDownloadCSV(jsonData, source, d, key) {
 
         for (let src of selectedOutputSources) {
             object['Id'] = d['Id']
-            object['TM_ID'] = filteredData.filter(x => x.TM_ID)[0]['TM_ID'][0]
+            object['TM_ID'] = filteredData.filter(x => x.TM_ID)[0]['TM_ID'][0];
+            for (let col of selectedColumns) {
+                object[col] = d[col];
+            }
 
             if (filteredData.filter(x => x[src]).length > 0) {
                 object[src] = filteredData.filter(x => x[src])[0][src][0]; //.match(/\d/g).join("")
@@ -266,17 +258,15 @@ function createDownloadCSV(jsonData, source, d, key) {
             else {
                 object[src] = '';
             }
+
+            updateDetails(d['Id'], key, d[key], object, 'after')
         }
         dwonloadFile.push(object)
     }
+    else {
+        updateDetails(d['Id'], key, d[key], null, jsonData.Message)
+    }
 }
-
-//function getPrefix(Id, source) {
-//    if (source.toLowerCase() === 'edr') {
-//        return `EDR${Id}`
-//    }
-//    return Id;
-//}
 
 function updateDetails(Id, source, sourceId, obj, status) {
     if (status === 'before')
@@ -350,14 +340,19 @@ function resetAll() {
 async function displaySources() {
     let checkLists = '';
     //console.log(await getAllDataSources())
-    sources = await getAllDataSources()
+    sources = all_datasources;//await getAllDataSources()
+    sources = sources.filter(x => x.JSON_Key !== 'TM_ID');
     for (let src of sources) {
+        //if (!selectedColumns.includes(src.JSON_Key)) {
         checkLists += `<label class="list-group-item">
-                            <input class="form-check-input me-1 chkDatasources" type="checkbox" onclick="SelectSource(this)" key="${src.JSON_Key}" val="${src.JSON_Key}">
-                            ${src.Homepage}
-                        </label>`;
+                <input class="form-check-input me-1 chkDatasources" type="checkbox" onclick="SelectSource(this)" key="${src.JSON_Key}" val="${src.JSON_Key}">
+                ${src.Homepage}
+                </label>`;
+        // }
+        // else {
+        //     sources = sources.filter(x => x.JSON_Key !== src.JSON_Key);
+        // }
     }
-
     document.getElementById('divSources').innerHTML = checkLists;
 }
 
