@@ -8,7 +8,7 @@ Epigraphers can obtain [Trismegistos](https://www.trismegistos.org/) Identifiers
 
 As the TexRelations API of Trismegistos is a dynamic tool and new connections are added and some are changed and this interface may not keep pace with those changes, we encourage those who want to add live links to other projects to their websites to establish a direct query of the API (for which they can also contact the TM team). Also, TM would strongly appreciate it if you acknowledge the use of the API where appropriate, including when you access it through this interface.
 
-**Inscriptiones Identifier Resolver (IDR)** is the tool to fetch *Trismegistos Identifiers* (TM ID) using the `TexRelations Matcher API` by providing the different sources of identifiers and vice versa. For instance, user uploads a CSV (input) file with inscription IDs from a project partnered with Trismegistos, and IDR returns a CSV (output) file with the IDs from other partner projects requested by the user, along with the original IDs. A simple web-based user interface makes this a more user-friendly task.
+**Inscriptiones Identifier Resolver (IDR)** is designed as a tool to fetch *Trismegistos Identifiers* (TM ID) using the `TexRelations Matcher API` by providing other epigraphic identifiers - and vice versa. For instance, the user uploads an input file (CSV) with inscription IDs from a project partnered with Trismegistos, and IDR returns an output file (CSV) with the IDs from other partner projects requested by the user, along with the original IDs. A simple web-based user interface makes this a more user-friendly task.
 
 ## 2. Approach
 We can achieve this process using the following technologies:
@@ -17,15 +17,15 @@ We can achieve this process using the following technologies:
    - HTML/CSS for front-end (GUI)
 
 ## 3. Methods
-IDR has two main methods: a single identifier resolver and a multiple identifiers resolver.
+IDR has two main interfaces: a single identifier resolver and a multiple identifier resolver.
 
 ### 3.1 Single Identifier Resolver
-*Example scenario: I have a single ID from I.Sicily and I want to get all the corresponding TM IDs and IDs of othe same inscription in other projects.*
+*Example scenario: I have a single ID from I.Sicily and I want to get the corresponding TM ID and all other corresponding IDs of the same inscription in other projects.*
 
-In this method, the user selects the data source and provides the relevant single ID with which to fetch the other data source IDs, including the TM ID (discussed in detail in section 4).
+In this method, the user selects the data source for the known ID and provides the relevant single ID with which to fetch the other data source IDs, including the TM ID (discussed in detail in section 4).
 
 ### 3.2 Multiple Identifiers Resolver
-*Example scenario A: I have a CSV file with combination of multiple I.Sicily IDs and EDR IDs and I want to get all corresponding TM IDs.*
+*Example scenario A: I have a CSV file with a combination of multiple I.Sicily IDs and EDR IDs and I want to get all corresponding TM IDs.*
 
 *Example scenario B: I have a CSV file with multiple I.Sicily IDs and TM IDs and want to get all corresponding IDs in other projects (e.g. EDH and Ubit Erat Lupa).*
 
