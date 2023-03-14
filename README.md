@@ -37,7 +37,7 @@ In this method, the user provides a CSV file that includes the known identifiers
    
   ![null](images/home/csv_file_format.png)
         
-  In the above figure, the column headers of the CSV file are highlighted in orange. The first column should be your data source ID (optional). In this example, we have used I.Sicily data as the source ID, with the heading 'Id'. Other column headers must be in the JSON_Key format provided in the `Trismegistos Matcher API` data sources (see figure below). The values in each column must be formatted as a *number*. For testing you can use our sample CSV [I.Sicily example](https://github.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/blob/main/sample/template.csv).
+  In the above figure, the column headers of the CSV file are highlighted in orange. The first column is optional, but if included should contain unique identifiers for your data source (to enable easy reintegration with your own dataset). In this example, we have used I.Sicily data as the source ID, with the heading 'Id'. Other column headers must be in the JSON_Key format required by the `Trismegistos Matcher API` data sources (see figure below for a list). The values in each column must be formatted as a *number*, without any prefix. For testing you can use our sample CSV [I.Sicily example](https://github.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/blob/main/sample/template.csv).
      
   ![null](images/home/tm_api_sources.png)
 
@@ -46,12 +46,12 @@ This tool has three pages (Home, [single ID](single.html) and [multiple ID](adva
 
 ### Single ID Resolver
 
-The *Single ID Resolver* page is the interface for fetching the different source IDs corresponding to the provided ID.
+The *Single ID Resolver* page is the interface for fetching the different IDs corresponding to the provided ID.
 
   ![null](images/home/single_id_page_1.png)
   *Figure 1: Single ID Resolver (First Look)*
 
-To use the `Single ID Resolver`, select the source of your input ID from the dropdown menu on the left; enter the ID number in the field on the right; and select `Go`. You can test what happens if you input `000003`.
+To use the `Single ID Resolver`, select the source of your input ID from the dropdown menu on the left; enter the ID number in the field on the right; and select `Go`. You can test what happens if you select 'Inscriptions of Sicily' on the left and input `000003` on the right.
 
   ![null](images/home/single_id_page_2.png)
   *Figure 2: Single ID Resolver after fetching the IDs*
@@ -59,16 +59,16 @@ To use the `Single ID Resolver`, select the source of your input ID from the dro
 
 ### Multiple ID Resolver
 
-The *Multiple ID resolver* page returns multiple IDs in response to the input CSV file. Use the `Browse` button to select and upload the CSV file.
+The *Multiple ID resolver* page returns multiple IDs in response to an input CSV file. Use the `Browse` button to select and upload your CSV file.
 ![null](images/home/multiple_id_page1.png)
 
-The user selects the input column(s) from the CSV file that s/he wants to use to fetch the new IDs. If the user selects the *Trismegistos (TM_ID)* column, IDR should fetch any known corresponding IDs from other data sources. When the user selects the *TM_ID* column, the other columns in the grid will be disabled, and the `Fetch` button will appear on the page. 
+The CSV file has to be properly formatted as described above. For testing you can use our sample CSV [I.Sicily example](https://github.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/blob/main/sample/template.csv).
 
-The CSV file has to be properly formatted. For testing you can use our sample CSV [I.Sicily example](https://github.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/blob/main/sample/template.csv).
+The user selects the input column(s) from the CSV file that s/he wants to use to fetch other corresponding IDs. Once one or more columns have been selected as input, the `Fetch` button will appear on the page. 
 
 ![null](images/home/multiple_id_page2.png)
 
-When clicking the `Fetch` button, the user will be presented with another menu listing all the available data sources. The user selects the required data sources that s/he wishes to be searched for corresponding IDs and downloaded.
+When clicking the `Fetch` button, the user will be presented with another menu listing all the available data sources. The user selects the required data source(s) that s/he wishes to be searched for corresponding IDs and downloaded. TM IDs will be downloaded by default.
 
 ![null](images/home/multiple_id_page_select_source.png)
 
@@ -76,7 +76,7 @@ After clicking on the `Apply` button, the *Resolver* will fetch the data from th
 
 ![null](images/home/multiple_id_page_progress.png)
 
-After completing the process, the user can download the file in a CSV format to their local computer.
+After completing the process, the user can download the file in CSV format to their local computer.
 
 ## 5. Limitation
 The following datasources are not implemented by TM.
