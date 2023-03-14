@@ -205,7 +205,7 @@ async function runAPI() {
         for (let key of selectedColumns) {
             try {
                 //if (selectedColumns.filter(x => x === key).length > 0) {
-                updateDetails(d['Id'], key, d[key], '', 'before')
+                updateDetails(key, d[key], '', 'before')
                 if (d[key] !== undefined && d[key] !== '') {
                     //console.log(d['Id'] + ' GAP ' + getNumber(d[key]))
                     let source = await getURLParameter(key)  //d[key])
@@ -222,7 +222,7 @@ async function runAPI() {
                 }
                 //}
             } catch (ex) {
-                updateDetails(null, null, null, null, ex.message)
+                updateDetails(null, null, null, ex.message)
             }
         }
         updateStats()
@@ -233,7 +233,7 @@ async function runAPI() {
     }
 
     if (filtereCSVdData.length === loopIndex)
-        updateDetails(null, null, null, null, 'Process completed...')
+        updateDetails(null, null, null, 'Process completed...')
 }
 
 function createDownloadCSV(jsonData, source, d, key) {
@@ -246,8 +246,14 @@ function createDownloadCSV(jsonData, source, d, key) {
         let object = {}
 
         for (let src of selectedOutputSources) {
-            object['Id'] = d['Id']
-            object['TM_ID'] = filteredData.filter(x => x.TM_ID)[0]['TM_ID'][0];
+            if (d['Id'] !== '' && d['Id'] !== undefined)
+                object['Id'] = d['Id']
+            else if (d['id'] !== '' && d['id'] !== undefined)
+                object['Id'] = d['id']
+
+            if (filteredData.filter(x => x.TM_ID)[0]['TM_ID'].length > 0)
+                object['TM_ID'] = filteredData.filter(x => x.TM_ID)[0]['TM_ID'][0];
+
             for (let col of selectedColumns) {
                 object[col] = d[col];
             }
@@ -259,20 +265,20 @@ function createDownloadCSV(jsonData, source, d, key) {
                 object[src] = '';
             }
 
-            updateDetails(d['Id'], key, d[key], object, 'after')
+            updateDetails(key, d[key], object, 'after')
         }
         dwonloadFile.push(object)
     }
     else {
-        updateDetails(d['Id'], key, d[key], null, jsonData.Message)
+        updateDetails(key, d[key], null, jsonData.Message)
     }
 }
 
-function updateDetails(Id, source, sourceId, obj, status) {
+function updateDetails(source, sourceId, obj, status) {
     if (status === 'before')
-        document.getElementById('divDetail').innerHTML += `<p>Fetching Ids for ${Id} using ${source}: ${sourceId === '' ? 'N/A' : sourceId}</p>`
+        document.getElementById('divDetail').innerHTML += `<p>Fetching Ids using ${source}: ${sourceId === '' ? 'N/A' : sourceId}</p>`
     else if (status === 'after')
-        document.getElementById('divDetail').innerHTML += `<p>Fetched ${Object.keys(obj)[0]}: ${Object.values(obj)[0]} for ${Id} using ${source}: ${sourceId}</p>`
+        document.getElementById('divDetail').innerHTML += `<p>Fetched ${Object.keys(obj)[0]}: ${Object.values(obj)[0]} using ${source}: ${sourceId}</p>`
     else if (status.includes('complete')) {
         document.getElementById('divDetail').innerHTML += `<p>${status}</p>`
         disabledAllActionButtons()
@@ -341,7 +347,7 @@ async function displaySources() {
     let checkLists = '';
     //console.log(await getAllDataSources())
     sources = all_datasources;//await getAllDataSources()
-    sources = sources.filter(x => x.JSON_Key !== 'TM_ID');
+    //sources = sources.filter(x => x.JSON_Key !== 'TM_ID');
     for (let src of sources) {
         //if (!selectedColumns.includes(src.JSON_Key)) {
         checkLists += `<label class="list-group-item">
