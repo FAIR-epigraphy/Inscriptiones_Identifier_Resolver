@@ -47,29 +47,28 @@
                     Epigraphers can obtain <a href="https://www.trismegistos.org/" target="_blank">Trismegistos</a> Identifiers and other digital corpora identifiers from the <a href="https://www.trismegistos.org/dataservices/texrelations/documentation/" target="_blank">Trismegistos TexRelations MatcherAPI</a> by providing the different source identifiers. This process takes time because epigraphers need to fetch TM IDs by providing them one-by-one from different source IDs; but it is also a non-trivial task for most epigraphers to query the API directly. <strong>The Inscriptiones Identifier Resolver (IDR)</strong> helps the epigrapher to fetch the ids in a more efficient, user friendly and less time-consuming way.
                 </p>
                 <p>
-                    As the TexRelations API of Trismegistos is a dynamic tool and new connections are added and some are changed and this interface may not keep pace with those changes, we encourage those who want to add live links to other projects to their websites to establish a direct query of the API (for which they can also contact the TM team). Also, TM would strongly appreciate it if you acknowledge the use of the API where appropriate, including when you access it through this interface.
+                    The <strong>Inscriptiones Identifier Resolver (IDR)</strong> is designed as a tool to fetch <em>Trismegistos Identifiers</em> (TM ID) using the <code>TexRelations Matcher API</code> by providing other epigraphic identifiers and vice versa. For instance, the user uploads a input file (CSV) with inscription IDs from a project partnered with Trismegistos, and IDR returns an output file (CSV) with the IDs from other partner projects as requested by the user, along with the original IDs. A simple web-based user interface makes this a more user-friendly task.
                 </p>
-
                 <p>
-                    <strong>Inscriptiones Identifier Resolver (IDR)</strong> is the tool to fetch <em>Trismegistos Identifiers</em> (TM ID) using the <code>TexRelations Matcher API</code> by providing the different sources of identifiers and vice versa. For instance, user uploads a CSV (input) file with inscription IDs from a project partnered with Trismegistos, and IDR returns a CSV (output) file with the IDs from other partner projects requested by the user, along with the original IDs. A simple web-based user interface makes this a more user-friendly task.
+                    As the TexRelations API of Trismegistos is a dynamic tool and new connections are added over time and some are changed - and this interface may not keep pace with those changes - we encourage those who want to add live links to other projects to their websites to establish a direct query of the API (for which they can also contact the TM team). Also, TM would strongly appreciate it if you acknowledge the use of the API where appropriate, including when you access it through this interface.
                 </p>
                 <h2 id="2-approach">2. Approach</h2>
-                <p>We can achieve this process using the following technologies:</p>
+                <p>We make this possible using the following technologies:</p>
                 <ul>
                     <li><a href="https://www.trismegistos.org/dataservices/texrelations/documentation/" target="_blank">Trismegistos TexRelations MatcherAPI</a></li>
-                    <li>JavaScript for backend</li>
-                    <li>HTML/CSS for front-end (GUI)</li>
+                    <li>JavaScript for the back-end</li>
+                    <li>HTML/CSS for the front-end (GUI)</li>
                 </ul>
                 <h2 id="3-methods">3. Methods</h2>
                 <p>
-                    IDR has two main methods: a single identifier resolver and a multiple identifiers resolver.
+                    IDR has two main interfaces: a single identifier resolver and a multiple identifier resolver.
                 </p>
                 <h3 id="3-1-single-identifier-resolver">3.1 Single Identifier Resolver</h3>
                 <p>
-                    <em>Example scenario: I have a single ID from I.Sicily and I want to get all the corresponding TM IDs and IDs of othe same inscription in other projects.</em>
+                    <em>Example scenario: I have a single ID from I.Sicily and I want to get the corresponding TM ID and all other corresponding IDs of the same inscription in other projects.</em>
                 </p>
                 <p>
-                    In this method, the user selects the data source and provides the relevant single ID with which to fetch the other data source IDs, including the TM ID (discussed in detail in section 4).
+                    In this method, the user selects the data source for the known ID and provides the relevant single ID with which to fetch the other IDs, including the TM ID (discussed in detail in section 4).
                 </p>
                 <h3 id="3-2-multiple-identifiers-resolver">3.2 Multiple Identifiers Resolver</h3>
                 <p>
@@ -84,39 +83,39 @@
                 <ul>
                     <li>
                         <p><strong>Input File format (CSV)</strong></p>
-                        <p>The input file format must be in the required format. The required format is as follows:</p>
+                        <p>The input file must be in the required format. The required format is as follows:</p>
                         <img class="img-fluid w-50" src="images/home/csv_file_format.png" />
                         <p class="mt-1">
-                            In the above figure, the column headers of the CSV file are highlighted in orange. The first column should be your data source ID (optional). In this example, we have used I.Sicily data as the source ID, with the heading &#39;Id&#39;. Other column headers must be in the JSON_Key format provided in the <code>Trismegistos Matcher API</code> data sources (see figure below). The values in each column must be formatted as a <em>number</em>. For testing you can use our sample CSV <a href="https://github.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/blob/main/sample/template.csv" target="_blank">I.Sicily example</a>.
+                            In the above figure, the column headers of the CSV file are highlighted in orange. The first column is optional, but if included should contain unique identifiers for your data source (to enable easy reintegration with your own dataset). In this example, we have used I.Sicily data as the source ID, with the heading &#39;Id&#39;, but this could be any unique identifier of your choice. Other column headers must be in the JSON_Key format required by the <code>Trismegistos Matcher API</code> data sources (see figure below for a list). The values in each column must be formatted as a <em>number</em>, without any prefix. For testing you can use our sample CSV <a href="https://github.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/blob/main/sample/template.csv" target="_blank">I.Sicily example</a>.
                         </p>
                         <img class="img-fluid w-50" src="images/home/tm_api_sources.png" />
                     </li>
                 </ul>
                 <h2>4. GUI (Graphical User Interface)</h2>
-                <p>This tool has three pages (Home, <a href="single.html" target="_blank">single ID</a> and <a href="advance.html" target="_blank">multiple ID</a>). The Home page is a project overview. The Single Id Resolver page is responsible for fetching the different source Ids depending on the provided Id.</p>
+                <p>This tool has three pages (Home, <a href="single.html" target="_blank">single ID</a> and <a href="advance.html" target="_blank">multiple ID</a>). The Home page provides a project overview. The Single Id Resolver page is the interface for fetching the different IDs corresponding to the provided ID.</p>
                 <figure class="figure">
                     <img class="img-fluid w-50" src="images/home/single_id_page_1.png" />
-                    <figcaption class="figure-caption">Figure 1: Single Id Resolver (First Look)</figcaption>
+                    <figcaption class="figure-caption">Figure 1: Single ID Resolver (first look)</figcaption>
                 </figure>
 
-                <p>To use the Single Id Resolver, select the source of your input id from the dropdown menu on the left; enter the id number in the field on the right; and select ‘Go’.</p>
+                <p>To use the Single ID Resolver, select the source of your input ID from the dropdown menu on the left; enter the ID number (only, without prefix) in the field on the right; and select ‘Go’. You can test what happens if you select ‘Inscriptions of Sicily’ on the left and input <code>000003</code> on the right.</p>
                 <figure class="figure">
                     <img class="img-fluid w-50" src="images/home/single_id_page_2.png" />
-                    <figcaption class="figure-caption">Figure 2: Single Id Resolver after fetching the IDs</figcaption>
+                    <figcaption class="figure-caption">Figure 2: Single ID Resolver after fetching the IDs</figcaption>
                 </figure>
                 <h3 id="multiple-id-resolver">Multiple ID Resolver</h3>
                 <p>
-                    The <em>Multiple ID resolver</em> page returns multiple IDs in response to the input CSV file. Use the <code>Browse</code> button to select and upload the CSV file.
+                    The <em>Multiple ID resolver</em> page returns multiple IDs in response to an input CSV file. Use the <code>Browse</code> button to select and upload your CSV file.
                     <img class="img-fluid w-50" src="images/home/multiple_id_page1.png" />
                 <p>
-                    The user selects the input column(s) from the CSV file that s/he wants to use to fetch the new IDs. If the user selects the <em>Trismegistos (TM_ID)</em> column, IDR should fetch any known corresponding IDs from other data sources. When the user selects the <em>TM_ID</em> column, the other columns in the grid will be disabled, and the <code>Fetch</code> button will appear on the page.
+                    The CSV file has to be properly formatted as described above in 3.2. For testing you can use our sample CSV <a href="https://github.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/blob/main/sample/template.csv" target="_blank">I.Sicily example</a>.
                 </p>
                 <p>
-                    The CSV file has to be properly formatted. For testing you can use our sample CSV <a href="https://github.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/blob/main/sample/template.csv" target="_blank">I.Sicily example</a>.
+                    The user selects the input column(s) from the CSV file that s/he wants to use to fetch other corresponding IDs. Once one or more columns have been selected as input, the <code>Fetch</code> button will appear on the page.
                 </p>
                 <img class="img-fluid w-50" src="images/home/multiple_id_page2.png" />
                 <p>
-                    When clicking the <code>Fetch</code> button, the user will be presented with another menu listing all the available data sources. The user selects the required data sources that s/he wishes to be searched for corresponding IDs and downloaded.
+                    When clicking the <code>Fetch</code> button, the user will be presented with another menu listing all the available data sources. The user selects the required data source(s) that s/he wishes to be searched for corresponding IDs and downloaded. TM IDs will be downloaded by default.
                 </p>
 
                 <img class="img-fluid w-50" src="images/home/multiple_id_page_select_source.png" />
@@ -126,7 +125,7 @@
                 <img class="img-fluid w-50" src="images/home/multiple_id_page_progress.png" />
                 <p>After completing the process, the user can download the file in a CSV format to their local computer.</p>
                 <h2 id="5-limitation">5. Limitation</h2>
-                <p>The following datasources are not implemented by TM.</p>
+                <p>The following datasources do not appear currently to be implemented in the TM API.</p>
                 <ul id="missingDatasources"></ul>
                 <h2 id="6-contributors">6. Contributors</h2>
                 <ul>
@@ -139,7 +138,7 @@
                     For more on the <strong>Trismegistos</strong> project, see:
                 </p>
                 <p>
-                    M. Depauw / T. Gheldof, 'Trismegistos. An interdisciplinary Platform for Ancient World Texts and Related Information', in: Ł. Bolikowski, V. Casarosa, P. Goodale, N. Houssos, P. Manghi, J. Schirrwagen (edd.), Theory and Practice of Digital Libraries - TPDL 2013 Selected Workshops (Communications in Computer and Information Science 416), Cham: Springer 2014, pp. 40–52.
+                    M. Depauw / T. Gheldof, 'Trismegistos. An interdisciplinary Platform for Ancient World Texts and Related Information', in: Ł. Bolikowski, V. Casarosa, P. Goodale, N. Houssos, P. Manghi, J. Schirrwagen (edd.), Theory and Practice of Digital Libraries - TPDL 2013 Selected Workshops (Communications in Computer and Information Science 416), Cham: Springer 2014, pp. 40–52. < href="https://www.researchgate.net/publication/315426739_Trismegistos_An_Interdisciplinary_Platform_for_Ancient_World_Texts_and_Related_Information" target="_blank">[online copy]</a>
                 </p>
                 <hr />
             </div>
