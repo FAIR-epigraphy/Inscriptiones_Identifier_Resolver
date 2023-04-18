@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////
 const myForm = document.getElementById("myForm");
 const csvFile = document.getElementById("csvFile");
-var dataObj = { Homepage: '', URL_parameter: '', JSON_Key: '' };
+var dataObj = { home_page: '', URL_parameter: '', JSON_Key: '' };
 var selectedColumns = [];
 var csvData = [];
 var filtereCSVdData = []; // Contains empty TM IDs data
@@ -75,11 +75,10 @@ function selectFile() {
 function checkDatasourceIdFormat(header) {
     let table = '';
     for (let h of header) {
-        let prefix = getPrefix(h);
-        let project_id = getProjectId(h);
+
         table += `<tr>
                     <td>${h}</td>
-                    <td>${showFormatMsg(project_id, prefix)}</td>
+                    <td>${showFormatMsg(h)}</td>
                   </tr>`;
     }
 
@@ -88,9 +87,18 @@ function checkDatasourceIdFormat(header) {
     myModal.show()
 }
 
-function showFormatMsg(projectId, prefix) {
+function showFormatMsg(source) {
     let span = '';
-    if (projectId !== '' && projectId !== null) {
+    let prefix = getPrefix(source);
+    let projectId = getProjectId(source);
+    const { format, example } = getFormat(source)
+    // if (format !== null) {
+    //     span = `<i class="bi bi-info-circle-fill text-warning"></i> ${format}`;
+    //     if (example !== null)
+    //         span += ` e.g., ${example}`;
+    // }
+    // else
+     if (projectId !== '' && projectId !== null) {
         if (!isNumber(projectId)) {
             span = `<i class="bi bi-info-circle-fill text-warning"></i> ID format should be in alphanumeric format. e.g., ${projectId}. `;
             if (prefix !== '') {
@@ -352,7 +360,7 @@ async function displaySources() {
         //if (!selectedColumns.includes(src.JSON_Key)) {
         checkLists += `<label class="list-group-item">
                 <input class="form-check-input me-1 chkDatasources" type="checkbox" onclick="SelectSource(this)" key="${src.JSON_Key}" val="${src.JSON_Key}">
-                ${src.Homepage}
+                ${src.home_page}
                 </label>`;
         // }
         // else {
@@ -367,7 +375,7 @@ function search(control) {
     let filteredSources = []
     if (control.value !== '') {
         let input = control.value.toLowerCase();
-        filteredSources = sources.filter(x => x.Homepage.toLowerCase().includes(input) ||
+        filteredSources = sources.filter(x => x.home_page.toLowerCase().includes(input) ||
             x.URL_parameter.toLowerCase().includes(input) || x.JSON_Key.toLowerCase().includes(input))
     }
     else {
@@ -377,7 +385,7 @@ function search(control) {
     for (let src of filteredSources) {
         checkLists += `<label class="list-group-item">
                             <input class="form-check-input me-1 chkDatasources" type="checkbox" onclick="SelectSource(this)" key="${src.JSON_Key}" val="${src.JSON_Key}">
-                            ${src.Homepage}
+                            ${src.home_page}
                         </label>`;
     }
 

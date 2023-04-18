@@ -2,26 +2,19 @@ var all_datasources = []
 var missing_datasources = []
 
 getAllDataSources_URL_Parameters = async () => {
-    var myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'text/plain; charset=UTF-8');
-    let myObject = await fetch('datasources.txt', myHeaders);
-    let buffer = await myObject.arrayBuffer();
-    const decoder = new TextDecoder('iso-8859-1');
-    const data = decoder.decode(buffer);
-    //console.log(text);
-    //let s = '';
-
+    let response = await fetch('https://fair.classics.ox.ac.uk/idr_api/datasources.php');
+    const data = await response.json();
     //////////////////////////////////
     // Set dropdown list
-    datasources = csvToArray(data)
-    missing_datasources = datasources.filter(x => x.project_id === '');
-    datasources = datasources.filter(x => x.project_id !== '');
+    datasources = data;
+    missing_datasources = datasources.filter(x => x.project_id === null);
+    datasources = datasources.filter(x => x.project_id !== null);
     all_datasources = datasources;
 
     let select = document.getElementsByClassName('selectpicker')[0];
     if (select !== undefined) {
         for (let i = 0; i < datasources.length; i++) {
-            select.innerHTML += `<option value="${datasources[i].URL_parameter}">${datasources[i].Homepage}</option>`
+            select.innerHTML += `<option value="${datasources[i].url_parameter}">${datasources[i].home_page}</option>`
         }
 
         const sorting = document.querySelector('.selectpicker');
@@ -39,26 +32,22 @@ getAllDataSources_URL_Parameters = async () => {
 }
 
 getURLParameter = async (json_key) => {
-    var myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'text/plain; charset=UTF-8');
-    let myObject = await fetch('datasources.txt', myHeaders);
-    let buffer = await myObject.arrayBuffer();
-    const decoder = new TextDecoder('iso-8859-1');
-    const data = decoder.decode(buffer);
+    let response = await fetch('https://fair.classics.ox.ac.uk/idr_api/datasources.php');
+    const data = await response.json();
 
     //////////////////////////////////
     // Set dropdown list
-    datasources = csvToArray(data)
+    datasources = data; //csvToArray(data)
 
-    let index = datasources.findIndex(x => x.JSON_Key === json_key)
+    let index = datasources.findIndex(x => x.json_key === json_key)
     if (index > -1)
-        return datasources[index].URL_parameter === 'None' ? null : datasources[index].URL_parameter;
+        return datasources[index].url_parameter === 'None' ? null : datasources[index].url_parameter;
 
     return null;
 }
 
 function getPrefix(source) {
-    let index = all_datasources.findIndex(x => x.URL_parameter === source || x.JSON_Key === source)
+    let index = all_datasources.findIndex(x => x.url_parameter === source || x.json_key === source)
     if (index > -1)
         return all_datasources[index].prefix;
 
@@ -66,26 +55,27 @@ function getPrefix(source) {
 }
 
 function getProjectId(source) {
-    let index = all_datasources.findIndex(x => x.URL_parameter === source || x.JSON_Key === source)
+    let index = all_datasources.findIndex(x => x.url_parameter === source || x.json_key === source)
     if (index > -1)
         return all_datasources[index].project_id;
 
     return null;
 }
 
-getAllDataSources = async () => {
-    var myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'text/plain; charset=UTF-8');
-    let myObject = await fetch('datasources.txt', myHeaders);
-    let buffer = await myObject.arrayBuffer();
-    const decoder = new TextDecoder('iso-8859-1');
-    const data = decoder.decode(buffer);
-    //console.log(text);
-    //let s = '';
+function getFormat(source) {
+    let index = all_datasources.findIndex(x => x.url_parameter === source || x.json_key === source)
+    if (index > -1)
+        return { format: all_datasources[index].id_format, example: all_datasources[index].id_format_exp };
 
+    return { format: null, example: null };
+}
+
+getAllDataSources = async () => {
+    let response = await fetch('https://fair.classics.ox.ac.uk/idr_api/datasources.php');
+    const data = await response.json();
     //////////////////////////////////
     // Set dropdown list
-    let datasources = csvToArray(data)
+    let datasources = data;//csvToArray(data)
     all_datasources = datasources;
 
     return datasources;

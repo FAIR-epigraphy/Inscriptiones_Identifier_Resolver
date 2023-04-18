@@ -150,7 +150,14 @@
             let span = '';
             projectId = getProjectId($('#selDatasource').val());
             let prefix = getPrefix($('#selDatasource').val());
-            if (projectId !== '') {
+            let {format, example} = getFormat($('#selDatasource').val());
+
+            if(format !== null){
+                span = format;
+                if(example !== null)
+                    span += ` e.g., ${example}`;
+            }
+            else if (projectId !== '') {
                 if (!isNumber(projectId)) {
                     span = `ID format should be in alphanumeric format. e.g., ${projectId}. `;
                     if(prefix!=='')
