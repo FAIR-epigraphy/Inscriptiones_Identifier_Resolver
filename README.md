@@ -37,7 +37,7 @@ In this method, the user provides a CSV file that includes the known identifiers
    
   ![null](images/home/csv_file_format.png)
         
-  In the above figure, the column headers of the CSV file are highlighted in orange. The first column is optional, but if included should contain unique identifiers for your data source (to enable easy reintegration with your own dataset). In this example, we have used I.Sicily data as the source ID, with the heading 'Id', but this could be any unique identifier of your choice. Other column headers *must* be in the JSON_Key format required by the `Trismegistos Matcher API` data sources (see figure below for a list). The values in each column must be formatted as a *number*, without any prefix. For testing you can use our sample CSV [I.Sicily example](https://github.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/blob/main/sample/template.csv).
+  In the above figure, the column headers of the CSV file are highlighted in orange. The first column is optional, but if included should contain unique identifiers for your data source (to enable easy reintegration with your own dataset). In this example, we have used I.Sicily data as the source ID, with the heading 'Id', but this could be any unique identifier of your choice. Other column headers *must* be in the JSON_Key format required by the `Trismegistos Matcher API` data sources (see figure below for a list). The values in each column must be formatted as a *number*, without any prefix. For testing you can use our sample CSV [I.Sicily example](https://raw.githubusercontent.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/main/sample/template.csv).
      
   ![null](images/home/tm_api_sources.png)
 
@@ -62,7 +62,7 @@ To use the `Single ID Resolver`, select the source of your input ID from the dro
 The *Multiple ID resolver* page returns multiple IDs in response to an input CSV file. Use the `Browse` button to select and upload your CSV file.
 ![null](images/home/multiple_id_page1.png)
 
-The CSV file has to be properly formatted as described above in 3.2. For testing you can use our sample CSV [I.Sicily example](https://github.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/blob/main/sample/template.csv).
+The CSV file has to be properly formatted as described above in 3.2. For testing you can use our sample CSV [I.Sicily example](https://raw.githubusercontent.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/main/sample/template.csv).
 
 The user selects the input column(s) from the CSV file that s/he wants to use to fetch other corresponding IDs. Once one or more columns have been selected as input, the `Fetch` button will appear on the page. 
 
