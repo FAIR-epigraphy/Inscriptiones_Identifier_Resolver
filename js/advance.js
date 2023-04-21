@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////
 const myForm = document.getElementById("myForm");
 const csvFile = document.getElementById("csvFile");
-var dataObj = { home_page: '', URL_parameter: '', JSON_Key: '' };
+var dataObj = { home_page: '', url_parameter: '', json_key: '' };
 var selectedColumns = [];
 var csvData = [];
 var filtereCSVdData = []; // Contains empty TM IDs data
@@ -98,7 +98,7 @@ function showFormatMsg(source) {
     //         span += ` e.g., ${example}`;
     // }
     // else
-     if (projectId !== '' && projectId !== null) {
+    if (projectId !== '' && projectId !== null) {
         if (!isNumber(projectId)) {
             span = `<i class="bi bi-info-circle-fill text-warning"></i> ID format should be in alphanumeric format. e.g., ${projectId}. `;
             if (prefix !== '') {
@@ -253,18 +253,18 @@ function createDownloadCSV(jsonData, source, d, key) {
 
         let object = {}
 
-        for (let src of selectedOutputSources) {
+        for (let col of selectedColumns) {
             if (d['Id'] !== '' && d['Id'] !== undefined)
                 object['Id'] = d['Id']
             else if (d['id'] !== '' && d['id'] !== undefined)
                 object['Id'] = d['id']
+                
+            object[col] = d[col];
+        }
 
+        for (let src of selectedOutputSources) {
             if (filteredData.filter(x => x.TM_ID)[0]['TM_ID'].length > 0)
                 object['TM_ID'] = filteredData.filter(x => x.TM_ID)[0]['TM_ID'][0];
-
-            for (let col of selectedColumns) {
-                object[col] = d[col];
-            }
 
             if (filteredData.filter(x => x[src]).length > 0) {
                 object[src] = filteredData.filter(x => x[src])[0][src][0]; //.match(/\d/g).join("")
@@ -355,16 +355,16 @@ async function displaySources() {
     let checkLists = '';
     //console.log(await getAllDataSources())
     sources = all_datasources;//await getAllDataSources()
-    //sources = sources.filter(x => x.JSON_Key !== 'TM_ID');
+    //sources = sources.filter(x => x.json_key !== 'TM_ID');
     for (let src of sources) {
-        //if (!selectedColumns.includes(src.JSON_Key)) {
+        //if (!selectedColumns.includes(src.json_key)) {
         checkLists += `<label class="list-group-item">
-                <input class="form-check-input me-1 chkDatasources" type="checkbox" onclick="SelectSource(this)" key="${src.JSON_Key}" val="${src.JSON_Key}">
+                <input class="form-check-input me-1 chkDatasources" type="checkbox" onclick="SelectSource(this)" key="${src.json_key}" val="${src.json_key}">
                 ${src.home_page}
                 </label>`;
         // }
         // else {
-        //     sources = sources.filter(x => x.JSON_Key !== src.JSON_Key);
+        //     sources = sources.filter(x => x.json_key !== src.json_key);
         // }
     }
     document.getElementById('divSources').innerHTML = checkLists;
@@ -376,17 +376,25 @@ function search(control) {
     if (control.value !== '') {
         let input = control.value.toLowerCase();
         filteredSources = sources.filter(x => x.home_page.toLowerCase().includes(input) ||
-            x.URL_parameter.toLowerCase().includes(input) || x.JSON_Key.toLowerCase().includes(input))
+            x.url_parameter.toLowerCase().includes(input) || x.json_key.toLowerCase().includes(input))
     }
     else {
         filteredSources = sources;
     }
 
     for (let src of filteredSources) {
-        checkLists += `<label class="list-group-item">
-                            <input class="form-check-input me-1 chkDatasources" type="checkbox" onclick="SelectSource(this)" key="${src.JSON_Key}" val="${src.JSON_Key}">
-                            ${src.home_page}
-                        </label>`;
+        if (selectedOutputSources.filter(x => x === src.json_key).length > 0) {
+            checkLists += `<label class="list-group-item active">
+                <input class="form-check-input me-1 chkDatasources" checked="checked" type="checkbox" onclick="SelectSource(this)" key="${src.json_key}" val="${src.json_key}">
+                    ${src.home_page}
+                </label>`;
+        }
+        else {
+            checkLists += `<label class="list-group-item">
+            <input class="form-check-input me-1 chkDatasources" type="checkbox" onclick="SelectSource(this)" key="${src.json_key}" val="${src.json_key}">
+                ${src.home_page}
+            </label>`;
+        }
     }
 
     document.getElementById('divSources').innerHTML = checkLists;
