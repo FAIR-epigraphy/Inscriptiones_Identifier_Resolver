@@ -17,7 +17,7 @@ We make this possible using the following technologies:
    - HTML/CSS for front-end (GUI)
 
 ## 3. Methods
-IDR has two main interfaces: a single identifier resolver and a multiple identifier resolver.
+IDR has two main interfaces: a single identifier resolver and a multiple identifier resolver. A [demonstration video](https://youtu.be/a_MMxd_9RlE) is available which covers this section and the next.
 
 ### 3.1 Single Identifier Resolver
 *Example scenario: I have a single ID from I.Sicily and I want to get the corresponding TM ID and all other corresponding IDs of the same inscription in other projects.*
