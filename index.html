@@ -86,7 +86,8 @@
                         <p>The input file must be in the required format. The required format is as follows:</p>
                         <img class="img-fluid w-50" src="images/home/csv_file_format.png" />
                         <p class="mt-1">
-                            In the above figure, the column headers of the CSV file are highlighted in orange. The first column is optional, but if included should contain unique identifiers for your data source (to enable easy reintegration with your own dataset). In this example, we have used I.Sicily data as the source ID, with the heading &#39;Id&#39;, but this could be any unique identifier of your choice. Other column headers must be in the JSON_Key format required by the <code>Trismegistos Matcher API</code> data sources (see figure below for a list). The values in each column must be formatted as a <em>number</em>, without any prefix. For testing you can use our sample CSV <a download="template.csv" href="https://raw.githubusercontent.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/main/sample/template.csv" target="_blank">I.Sicily example</a>. (Right-click on the link, and save as .csv.)
+                            In the above figure, the column headers of the CSV file are highlighted in orange. The first column is optional, but if included should contain unique identifiers for your data source (to enable easy reintegration with your own dataset). In this example, we have used I.Sicily data as the source ID, with the heading &#39;Id&#39;, but this could be any unique identifier of your choice. Other column headers must be in the JSON_Key format required by the <code>Trismegistos Matcher API</code> data sources (see figure below for a list). The values in each column must be formatted as a <em>number</em>, without any prefix. For testing you can use our sample CSV <span style="cursor: pointer;" class="text-primary"
+                            onclick="downloadFile('https://raw.githubusercontent.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/main/sample/template.csv', 'template.csv')">I.Sicily example</a>.
                         </p>
                         <img class="img-fluid w-50" src="images/home/tm_api_sources.png" />
                     </li>
@@ -108,7 +109,8 @@
                     The <em>Multiple ID resolver</em> page returns multiple IDs in response to an input CSV file. Use the <code>Browse</code> button to select and upload your CSV file.
                     <img class="img-fluid w-50" src="images/home/multiple_id_page1.png" />
                 <p>
-                    The CSV file has to be properly formatted as described above in 3.2. For testing you can use our sample CSV <a href="https://raw.githubusercontent.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/main/sample/template.csv" target="_blank" download="template.csv">I.Sicily example</a>.
+                    The CSV file has to be properly formatted as described above in 3.2. For testing you can use our sample CSV <span style="cursor: pointer;" class="text-primary"
+                    onclick="downloadFile('https://raw.githubusercontent.com/FAIR-epigraphy/Inscriptiones_Identifier_Resolver/main/sample/template.csv', 'template.csv')">I.Sicily example</a>.
                 </p>
                 <p>
                     The user selects the input column(s) from the CSV file that s/he wants to use to fetch other corresponding IDs. Once one or more columns have been selected as input, the <code>Fetch</code> button will appear on the page.
@@ -172,6 +174,39 @@
                 li += `<li>${missing_datasources[i].home_page}</li>`
             }
             $('#missingDatasources').html(li);
+        }
+
+        // Function to download a file
+        async function downloadFile(url, filename) {
+            try {
+                // Fetch the file
+                const response = await fetch(url);
+
+                // Check if the request was successful
+                if (response.status !== 200) {
+                    throw new Error(`Unable to download file. HTTP status: ${response.status}`);
+                }
+
+                // Get the Blob data
+                const blob = await response.blob();
+
+                // Create a download link
+                const downloadLink = document.createElement('a');
+                downloadLink.href = URL.createObjectURL(blob);
+                downloadLink.download = filename;
+
+                // Trigger the download
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+
+                // Clean up
+                setTimeout(() => {
+                    URL.revokeObjectURL(downloadLink.href);
+                    document.body.removeChild(downloadLink);
+                }, 100);
+            } catch (error) {
+                console.error('Error downloading the file:', error.message);
+            }
         }
         
     </script>
