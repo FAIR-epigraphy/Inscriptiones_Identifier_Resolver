@@ -258,16 +258,29 @@ function createDownloadCSV(jsonData, source, d, key) {
                 object['Id'] = d['Id']
             else if (d['id'] !== '' && d['id'] !== undefined)
                 object['Id'] = d['id']
-                
+
             object[col] = d[col];
         }
 
         for (let src of selectedOutputSources) {
-            if (filteredData.filter(x => x.TM_ID)[0]['TM_ID'].length > 0)
-                object['TM_ID'] = filteredData.filter(x => x.TM_ID)[0]['TM_ID'][0];
-
+            if (filteredData.filter(x => x.TM_ID)[0]['TM_ID'].length > 0) {
+                let ids = ''
+                let value = filteredData.filter(x => x.TM_ID)[0];
+                for (let v of value['TM_ID']) {
+                    ids += `${v}, `;
+                }
+                ids = ids.trim().slice(0, -1);
+                object['TM_ID'] = ids;//filteredData.filter(x => x.TM_ID)[0]['TM_ID'][0];
+            }
+            
             if (filteredData.filter(x => x[src]).length > 0) {
-                object[src] = filteredData.filter(x => x[src])[0][src][0]; //.match(/\d/g).join("")
+                let ids = ''
+                let value = filteredData.filter(x => x[src])[0];
+                for (let v of value[src]) {
+                    ids += `${v}, `;
+                }
+                ids = ids.trim().slice(0, -1);
+                object[src] = ids; //[src][0]; //.match(/\d/g).join("")
             }
             else {
                 object[src] = '';
