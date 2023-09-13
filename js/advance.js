@@ -212,7 +212,6 @@ async function runAPI() {
         let keys = Object.keys(d);
         for (let key of selectedColumns) {
             try {
-                //if (selectedColumns.filter(x => x === key).length > 0) {
                 updateDetails(key, d[key], '', 'before')
                 if (d[key] !== undefined && d[key] !== '') {
                     //console.log(d['Id'] + ' GAP ' + getNumber(d[key]))
@@ -221,14 +220,9 @@ async function runAPI() {
                     let Id = prefix + d[key]
                     let jsonData = await getRelations(Id, source);
 
-                    if (Array.isArray(jsonData)) {
-                        d.processed = true;
-                        createDownloadCSV(jsonData, source, d, key)
-                        found++
-                        break;
-                    }
+                    d.processed = true;
+                    createDownloadCSV(jsonData, source, d, key)
                 }
-                //}
             } catch (ex) {
                 updateDetails(null, null, null, ex.message)
             }
@@ -245,24 +239,21 @@ async function runAPI() {
 }
 
 function createDownloadCSV(jsonData, source, d, key) {
-    if (Array.isArray(jsonData)) {
-        let filteredData = jsonData.filter((row) => {
-            var ignoreValue = Object.values(row).some(elem => elem === null);
-            return !ignoreValue ? true : false;
-        });
+    let filteredData = jsonData;
 
-        let object = {}
+    let object = {}
 
-        for (let col of selectedColumns) {
-            if (d['Id'] !== '' && d['Id'] !== undefined)
-                object['Id'] = d['Id']
-            else if (d['id'] !== '' && d['id'] !== undefined)
-                object['Id'] = d['id']
+    for (let col of selectedColumns) {
+        if (d['Id'] !== '' && d['Id'] !== undefined)
+            object['Id'] = d['Id']
+        else if (d['id'] !== '' && d['id'] !== undefined)
+            object['Id'] = d['id']
 
-            object[col] = d[col];
-        }
+        object[col] = d[col];
+    }
 
-        for (let src of selectedOutputSources) {
+    for (let src of selectedOutputSources) {
+        if (Array.isArray(jsonData)) {
             if (filteredData.filter(x => x.TM_ID)[0]['TM_ID'].length > 0) {
                 let ids = ''
                 let value = filteredData.filter(x => x.TM_ID)[0];
@@ -272,7 +263,7 @@ function createDownloadCSV(jsonData, source, d, key) {
                 ids = ids.trim().slice(0, -1);
                 object['TM_ID'] = ids;//filteredData.filter(x => x.TM_ID)[0]['TM_ID'][0];
             }
-            
+
             if (filteredData.filter(x => x[src]).length > 0) {
                 let ids = ''
                 let value = filteredData.filter(x => x[src])[0];
@@ -281,6 +272,7 @@ function createDownloadCSV(jsonData, source, d, key) {
                 }
                 ids = ids.trim().slice(0, -1);
                 object[src] = ids; //[src][0]; //.match(/\d/g).join("")
+                //found++
             }
             else {
                 object[src] = '';
@@ -288,11 +280,11 @@ function createDownloadCSV(jsonData, source, d, key) {
 
             updateDetails(key, d[key], object, 'after')
         }
-        dwonloadFile.push(object)
+        else {
+            object[src] = '';
+        }
     }
-    else {
-        updateDetails(key, d[key], null, jsonData.Message)
-    }
+    dwonloadFile.push(object)
 }
 
 function updateDetails(source, sourceId, obj, status) {
@@ -469,7 +461,23 @@ async function action(control, event) {
             updateDetails(null, null, null, null, 'Process paused...')
         }
         else if (event === 'download') {
-            let csv = convertJSON2CSV(dwonloadFile)
+            // Create a temporary object to track unique keys
+            const uniqueKeys = {};
+            const uniqueData = dwonloadFile.filter((item) => {
+                // Generate a unique key based on the properties you want to compare
+
+                const dynamicKeys = Object.keys(item);
+                const key = dynamicKeys.map((k) => item[k]).join("_");
+
+                // Check if the key is already in the temporary object
+                if (!uniqueKeys[key]) {
+                    // If it's not in the object, mark it as seen by adding it to the object
+                    uniqueKeys[key] = true;
+                    return true; // Include the item in the result
+                }
+                return false; // Exclude the item from the result (duplicate)
+            });
+            let csv = convertJSON2CSV(uniqueData)
             const contentType = 'text/csv;charset=utf-8;';
             const a = document.createElement('a');
             const file = new Blob([csv], { type: contentType });
