@@ -10,6 +10,7 @@
         integrity="sha384-eoTu3+HydHRBIjnCVwsFyCpUDZHZSFKEJD0mc3ZqSBSb6YhZzRHeiomAUWCstIWo" crossorigin="anonymous">
 
     <link href="css/choices.min.css" rel="stylesheet" />
+    <link href="css/cookieconsent.min.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
 </head>
 
@@ -245,7 +246,31 @@
     <script src="js/parseCSV.js"></script>
     <script src="js/Utility.js"></script>
 
+    <script src="js/cookieconsent.min.js"></script>
+
     <script>
+
+        ////////////////////////////////////////////////////////////////////
+        /////////////////////// Cookie Consent
+        window.cookieconsent.initialise({
+            container: document.getElementById("content"),
+            palette: {
+                popup: { background: "#000" },
+                button: { background: "#f1d600" },
+            },
+            revokable: true,
+            onStatusChange: function (status) {
+                console.log(this.hasConsented() ?
+                    'enable cookies' : 'disable cookies');
+            },
+            theme: 'edgeless',
+            type: 'opt-out',
+            law: {
+                regionalLaw: false,
+            },
+            location: true,
+        });
+
         showMissingDatasources();
         async function showMissingDatasources() {
             await getAllDataSources_URL_Parameters();
